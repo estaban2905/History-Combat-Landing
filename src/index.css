@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-display: 'Cinzel', serif;
+  --font-sans: 'Outfit', sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #08080c;
+  color: #f3f4f6;
+  overflow-x: hidden;
+}
+
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+}
+
+.font-display {
+  font-family: 'Cinzel', serif;
+}
+
+/* Subtle arcade scanlines overlay */
+.arcade-scanlines {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.3) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f1016;
+}
+::-webkit-scrollbar-thumb {
+  background: #272738;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #eab308;
+}

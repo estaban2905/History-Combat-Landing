@@ -1,0 +1,6 @@
+{
+  "name": "History Combat: El Torneo de los Siglos",
+  "description": "Sitio web oficial de History Combat: El Torneo de los Siglos, el juego de lucha arcade 2D en pixel art donde figuras históricas se baten en duelo a través del tiempo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
