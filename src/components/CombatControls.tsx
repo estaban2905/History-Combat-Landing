@@ -6,15 +6,16 @@ export const CombatControls: React.FC = () => {
 
   const keyDetails: Record<string, { label: string; desc: string }> = {
     'W': { label: 'Saltar', desc: 'Salto vertical o diagonal para esquivar barridas y conectar golpes aéreos.' },
-    'A': { label: 'Retroceder / Bloquear', desc: 'Retrocede y activa la guardia de pie contra ataques altos y medios.' },
-    'S': { label: 'Agacharse', desc: 'Guardia baja contra patadas a los pies y perfil reducido para esquivar proyectiles.' },
-    'D': { label: 'Avanzar / Dash', desc: 'Avanza hacia el rival. Una doble pulsación rápida ejecuta un dash frontal.' },
-    'U': { label: 'Puño Débil', desc: 'El golpe más rápido para confirmar combos y frenar iniciativas del rival.' },
-    'I': { label: 'Puño Fuerte', desc: 'Mayor impacto y daño. Ideal para remates de combos y castigar recuperaciones.' },
-    'J': { label: 'Patada Débil', desc: 'Ataque veloz de media altura para mantener la distancia.' },
-    'K': { label: 'Patada Fuerte', desc: 'Gran alcance; provoca Counter-Hit con daño extra si interceptas un golpe rival.' },
-    'O': { label: 'Agarre', desc: 'Llave cuerpo a cuerpo que no se puede bloquear con guardia normal.' },
-    'L': { label: 'Parry (Bloqueo Perfecto)', desc: 'Pulsar en el instante del impacto anula todo daño y otorga ventaja de frames.' },
+    'A': { label: 'Retroceder', desc: 'Retrocede. Un doble toque rápido hacia atrás ejecuta un backdash: unos frames sin poder ser golpeado ni agarrado.' },
+    'S': { label: 'Agacharse', desc: 'Permite ataques bajos (barridos). Con Espacio, bloqueas agachado contra patadas bajas.' },
+    'D': { label: 'Avanzar / Correr', desc: 'Avanza hacia el rival. Un doble toque rápido hacia delante, manteniendo, te hace correr.' },
+    'U': { label: 'Puño Débil', desc: 'El golpe más rápido para iniciar combos. Junto a J (puño débil + patada débil) ejecuta un agarre.' },
+    'I': { label: 'Puño Fuerte', desc: 'Mayor impacto y daño. Con abajo (S) es un antiaéreo que lanza al rival por los aires.' },
+    'J': { label: 'Patada Débil', desc: 'Ataque veloz para mantener la distancia. Junto a U ejecuta un agarre, que atraviesa el bloqueo.' },
+    'K': { label: 'Patada Fuerte', desc: 'Gran alcance. Golpear a un rival que aún prepara su ataque causa Counter-Hit con daño extra.' },
+    'O': { label: 'Especial 1', desc: 'Primer ataque especial del luchador (proyectil, lanzador o embestida). Gasta energía.' },
+    'L': { label: 'Especial 2', desc: 'Poder propio de cada luchador. Gasta energía. O + L a la vez, con la energía al 100, lanza el Ultimate.' },
+    ' ': { label: 'Bloquear', desc: 'Mantén para bloquear (reduce el daño al 15 %). Soltar y volver a pulsar justo antes del golpe es un bloqueo perfecto.' },
   };
 
   const current = keyDetails[activeKey] || keyDetails['U'];
@@ -110,10 +111,21 @@ export const CombatControls: React.FC = () => {
                 </div>
               </div>
 
+              <button
+                onClick={() => { playArcadeSound('coin'); setActiveKey(' '); }}
+                className={`w-56 h-11 rounded border font-mono font-bold text-xs flex items-center justify-center transition-all cursor-pointer ${
+                  activeKey === ' '
+                    ? 'bg-emerald-400 text-neutral-950 border-emerald-300 shadow-md scale-105'
+                    : 'bg-[#16212e] text-neutral-200 border-[#2a3f5a] hover:border-neutral-400'
+                }`}
+              >
+                ESPACIO · Bloqueo
+              </button>
+
               {/* Key explanation */}
               <div className="w-full bg-[#0c121a] border border-[#1e2d3e] p-4 rounded-lg text-xs space-y-1">
                 <div className="flex justify-between items-center">
-                  <span className="font-mono text-amber-400 text-sm font-bold">Tecla [{activeKey}]</span>
+                  <span className="font-mono text-amber-400 text-sm font-bold">Tecla [{activeKey === ' ' ? 'Espacio' : activeKey}]</span>
                   <span className="font-display font-bold text-neutral-100">{current.label}</span>
                 </div>
                 <p className="text-neutral-300 text-xs leading-relaxed">{current.desc}</p>
@@ -137,7 +149,7 @@ export const CombatControls: React.FC = () => {
             <div className="p-4 rounded-lg bg-[#121a24] border border-[#233549] space-y-2 text-xs shadow-md">
               <strong className="text-neutral-100 font-display text-sm block">Modo Historia & Duelo Online</strong>
               <p className="text-neutral-300 leading-relaxed">
-                La campaña individual ofrece diálogos narrativos entre épocas y 3 revanchas por partida. En el duelo online puedes jugar partidas clasificatorias con sistema de ligas o amistosos con amigos mediante enlace directo.
+                La campaña individual ofrece diálogos narrativos entre épocas y 3 revanchas por partida. En el duelo online puedes jugar partidas clasificatorias con sistema de ligas o amistosos con amigos mediante una sala privada con código.
               </p>
             </div>
 
