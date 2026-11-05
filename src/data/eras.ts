@@ -17,8 +17,8 @@ export const ERAS_DATA: Era[] = [
     name: 'El Mundo Actual',
     period: 'Siglo XXI',
     bossName: 'Donald Trump',
-    bossRole: 'Magnate de la Torre',
-    stageName: 'Azotea del Trump World Center',
+    bossRole: 'Magnate y presidente',
+    stageName: 'La Casa Blanca · Washington D.C.',
     description: 'Rascacielos iluminados, torres doradas y medios de comunicación. El punto de inicio del viaje hacia atrás en el tiempo.',
     clues: 'El Nexo emite ondas de frecuencia temporal a través de las antenas satelitales.'
   },
@@ -27,10 +27,10 @@ export const ERAS_DATA: Era[] = [
     order: 2,
     name: 'El Siglo XX',
     period: '1900 - 1999',
-    bossName: 'El Dictador del Búnker',
-    bossRole: 'Tirano en Retirada',
-    stageName: 'Búnker de Berlín 1945',
-    description: 'Trincheras, sirenas y búnkeres de hormigón. El jefe es caricaturizado en su mesa de mapas en plena rabieta.',
+    bossName: 'Adolf Hitler',
+    bossRole: 'Dictador del Tercer Reich',
+    stageName: 'Núremberg · La Catedral de Luz',
+    description: 'Guerras mundiales, regímenes totalitarios y ciencia atómica. El jefe de la época aguarda en un mitin gigantesco de focos y estandartes.',
     clues: 'Einstein advierte que aquí fue donde la energía atómica aceleró la fractura.'
   },
   {
@@ -39,8 +39,8 @@ export const ERAS_DATA: Era[] = [
     name: 'Revoluciones y Progreso',
     period: 'Siglos XVIII - XIX',
     bossName: 'Napoleón Bonaparte',
-    bossRole: 'El Emperador en Waterloo',
-    stageName: 'Colina de Waterloo',
+    bossRole: 'El Emperador de los franceses',
+    stageName: 'Austerlitz · Campo de batalla',
     description: 'Humo de pólvora, fábricas de vapor e ideales revolucionarios. Napoleón custodia el tercer fragmento.',
     clues: 'Tesla revela que el vapor y los engranajes industriales prepararon el chasis del Reloj.'
   },
@@ -48,10 +48,10 @@ export const ERAS_DATA: Era[] = [
     id: 'era_4',
     order: 4,
     name: 'Imperios y Descubrimientos',
-    period: 'Siglos XV - XVII',
+    period: 'Siglos XII - XVII',
     bossName: 'Hernán Cortés',
     bossRole: 'El Conquistador de los Galeones',
-    stageName: 'Calzadas de Tenochtitlan',
+    stageName: 'Veracruz · 1519',
     description: 'Galeones de madera en altamar y fortalezas coloniales. Aquí chocan conquistadores y defensores originarios.',
     clues: 'Da Vinci dejó los planos ocultos en la bodega de un navío encallado.'
   },
@@ -59,11 +59,11 @@ export const ERAS_DATA: Era[] = [
     id: 'era_5',
     order: 5,
     name: 'La Antigüedad',
-    period: 'Siglo VIII a.C. - Siglo V d.C.',
+    period: 'Siglo VI a.C. - Siglo I d.C.',
     bossName: 'Julio César',
     bossRole: 'Dictador del Senado Romano',
-    stageName: 'Senado de Roma',
-    description: 'Columnas de mármol, legiones y filósofos. César defiende la última puerta antes de la grieta pura del Nexo.',
+    stageName: 'El Coliseo Romano',
+    description: 'Columnas de mármol, legiones, reinas y filósofos. César defiende la última puerta antes de la grieta pura del Nexo.',
     clues: 'Sócrates pregunta: ¿Qué es el tiempo sino la memoria de quienes lo sufren?'
   }
 ];
