@@ -33,7 +33,7 @@ export const DownloadAndPlay: React.FC = () => {
                 historycombat.cl
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Sin descargas ni esperas. Carga directa a través de WebAssembly en Godot 4. Compatible con Chrome, Firefox, Safari y Edge.
+                Sin descargas ni esperas. Carga directa a través de WebAssembly en Godot 4. Pensado para Chrome, Firefox y Edge en ordenador con teclado.
               </p>
             </div>
 
@@ -61,7 +61,7 @@ export const DownloadAndPlay: React.FC = () => {
                 Descarga para PC
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Versión ejecutable portable para Windows 10 y 11. Rendimiento óptimo a 60 FPS estables y juego sin conexión para el modo historia.
+                Versión ejecutable portable para Windows 10 y 11. Ejecutable único, sin instalación.
               </p>
             </div>
 
@@ -72,14 +72,14 @@ export const DownloadAndPlay: React.FC = () => {
               }}
               className="w-full py-3.5 bg-[#1a2636] hover:bg-[#233549] text-neutral-200 border border-[#2a3f5a] font-display font-semibold text-xs sm:text-sm rounded text-center block transition-all cursor-pointer"
             >
-              Descargar .exe (~84 MB)
+              Descargar .exe (~115 MB)
             </button>
           </div>
         </div>
 
         {/* Requirements snippet */}
         <div className="p-4 rounded-lg bg-[#0c121a] border border-[#1c2836] text-[11px] text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono">
-          <span>Requisitos: Navegador con soporte WebGL 2.0 / PC con Windows 64-bit</span>
+          <span>Requisitos: ordenador con teclado y navegador con WebGL 2.0 / PC con Windows 64-bit. No hay controles táctiles: no apto para móviles.</span>
           <span className="text-neutral-400 font-semibold">Motor Godot 4</span>
         </div>
 
@@ -107,7 +107,7 @@ export const DownloadAndPlay: React.FC = () => {
 
               <div className="p-3 bg-[#0c121a] rounded border border-[#1c2836] text-xs font-mono text-neutral-400 space-y-1">
                 <div>Archivo: <strong className="text-neutral-200">HistoryCombat_v0.1_Win64.zip</strong></div>
-                <div>Tamaño: <strong className="text-neutral-200">~84.2 MB</strong></div>
+                <div>Tamaño: <strong className="text-neutral-200">~115 MB</strong></div>
               </div>
 
               <div className="pt-2 flex flex-col gap-2">

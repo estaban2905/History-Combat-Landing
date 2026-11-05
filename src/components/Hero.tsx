@@ -88,7 +88,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
                 </div>
 
                 <span className="text-[11px] font-mono text-neutral-500 hidden sm:inline">
-                  Metraje real 1080p 60fps
+                  Metraje real del juego
                 </span>
               </div>
             </div>
@@ -157,7 +157,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
             <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono text-neutral-400">
               <div className="bg-[#0e1620] border border-[#1c2836] p-2 rounded">
                 <div className="text-neutral-200 font-bold">50</div>
-                <div className="text-[10px] text-neutral-500">Luchadores</div>
+                <div className="text-[10px] text-neutral-500">Luchadores + El Nexo</div>
               </div>
               <div className="bg-[#0e1620] border border-[#1c2836] p-2 rounded">
                 <div className="text-neutral-200 font-bold">5</div>
@@ -165,7 +165,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
               </div>
               <div className="bg-[#0e1620] border border-[#1c2836] p-2 rounded">
                 <div className="text-neutral-200 font-bold">Online</div>
-                <div className="text-[10px] text-neutral-500">Duelo 1v1</div>
+                <div className="text-[10px] text-neutral-500">Duelo 1v1 · Solo teclado</div>
               </div>
             </div>
           </div>
