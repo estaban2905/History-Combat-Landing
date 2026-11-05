@@ -37,18 +37,18 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
                 {activeMediaTab === 'video' ? (
                   <video
                     key="promo-video"
-                    src="/assets/aistudio/history_combat_promo_c8a3d292.mp4"
+                    src="/assets/media/promo.mp4"
                     controls
                     playsInline
                     preload="metadata"
                     className="w-full h-full object-contain"
                   >
-                    <source src="/assets/aistudio/history_combat_promo_c8a3d292.mp4" type="video/mp4" />
+                    <source src="/assets/media/promo.mp4" type="video/mp4" />
                     Tu navegador no soporta la reproducción de video.
                   </video>
                 ) : (
                   <img
-                    src="/assets/aistudio/Captura_de_pantalla_2026-11-05_100044_39837a09.png"
+                    src="/assets/media/captura-ingame.png"
                     alt="Combate in-game en Godot 4: Einstein contra Kim en la Plaza de Pyongyang"
                     className="w-full h-full object-cover"
                   />
