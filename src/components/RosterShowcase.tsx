@@ -25,7 +25,7 @@ export const RosterShowcase: React.FC = () => {
         <div className="bg-[#121a24] border border-[#233549] p-4 rounded-lg shadow-xl mb-6">
           <div className="flex items-center justify-between font-mono text-xs text-neutral-400 mb-3 pb-2 border-b border-[#1c2836]">
             <span className="text-neutral-300">Selecciona un luchador:</span>
-            <span className="text-amber-400 font-bold">12 iniciales disponibles</span>
+            <span className="text-amber-400 font-bold">Luchadores destacados</span>
           </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5">
