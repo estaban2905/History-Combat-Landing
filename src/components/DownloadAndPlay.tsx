@@ -102,11 +102,11 @@ export const DownloadAndPlay: React.FC = () => {
               </h4>
 
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Paquete portable para Windows. Descomprime el archivo ZIP y ejecuta directamente el archivo .exe.
+                Versión portable para Windows: un único archivo .exe que se ejecuta directamente, sin instalar nada.
               </p>
 
               <div className="p-3 bg-[#0c121a] rounded border border-[#1c2836] text-xs font-mono text-neutral-400 space-y-1">
-                <div>Archivo: <strong className="text-neutral-200">HistoryCombat_v0.1_Win64.zip</strong></div>
+                <div>Archivo: <strong className="text-neutral-200">HistoryCombat.exe</strong></div>
                 <div>Tamaño: <strong className="text-neutral-200">~115 MB</strong></div>
               </div>
 
