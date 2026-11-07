@@ -9,8 +9,12 @@ import { Hero } from './components/Hero';
 import { NexoLore } from './components/NexoLore';
 import { StoryAndEras } from './components/StoryAndEras';
 import { RosterShowcase } from './components/RosterShowcase';
-import { CombatControls } from './components/CombatControls';
+import { FightsVideo } from './components/FightsVideo';
+import { HowToPlay } from './components/HowToPlay';
+import { GameModes } from './components/GameModes';
+import { Faq } from './components/Faq';
 import { DownloadAndPlay } from './components/DownloadAndPlay';
+import { LegalSection } from './components/LegalSection';
 import { Footer } from './components/Footer';
 
 export default function App() {
@@ -35,20 +39,32 @@ export default function App() {
           onDownloadClick={scrollToDownload}
         />
 
-        {/* 3. Campaña Primero: El Nexo, los 4 científicos creadores y los 3 finales */}
-        <NexoLore />
-
-        {/* 4. Las 4 épocas en orden inverso hacia la grieta */}
+        {/* 3. Historia: la premisa, los 4 frentes con su jefe y su creador */}
         <StoryAndEras />
 
-        {/* 5. Pantalla de Selección Arcade: 12 luchadores interactivos y datos reales */}
+        {/* 4. El Nexo y los 3 finales */}
+        <NexoLore />
+
+        {/* 5. Plantel: carrusel infinito y fichas */}
         <RosterShowcase />
 
-        {/* 6. Controles y Mecánicas Arcade (WASD + UIJKOL) */}
-        <CombatControls />
+        {/* 6. Video de peleas reales */}
+        <FightsVideo />
 
-        {/* 7. Jugar en historycombat.cl y descarga PC */}
+        {/* 7. Cómo jugar: teclado, mando y técnicas */}
+        <HowToPlay />
+
+        {/* 8. Modos de juego: historia, versus local y online */}
+        <GameModes />
+
+        {/* 9. Jugar en historycombat.cl, descarga PC y requisitos */}
         <DownloadAndPlay />
+
+        {/* 10. Preguntas frecuentes */}
+        <Faq />
+
+        {/* 8. Avisos legales: ficción, términos, privacidad, borrado de cuenta, licencias */}
+        <LegalSection />
       </main>
 
       {/* 8. Footer sobrio con aviso legal de parodia */}

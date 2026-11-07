@@ -22,11 +22,15 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-5 text-xs">
-            <a href="#el-nexo" className="hover:text-amber-400 transition-colors">El Nexo</a>
-            <a href="#epocas" className="hover:text-amber-400 transition-colors">Épocas</a>
+            <a href="#historia" className="hover:text-amber-400 transition-colors">Historia</a>
             <a href="#plantel" className="hover:text-amber-400 transition-colors">Plantel</a>
-            <a href="#combate" className="hover:text-amber-400 transition-colors">Combate</a>
+            <a href="#como-jugar" className="hover:text-amber-400 transition-colors">Cómo jugar</a>
+            <a href="#modos" className="hover:text-amber-400 transition-colors">Modos</a>
             <a href="#descargar" className="hover:text-amber-400 transition-colors">Jugar</a>
+            <a href="#faq" className="hover:text-amber-400 transition-colors">Preguntas</a>
+            <a href="#legal-terminos" className="hover:text-amber-400 transition-colors">Términos</a>
+            <a href="#legal-privacidad" className="hover:text-amber-400 transition-colors">Privacidad</a>
+            <a href="#legal-licencias" className="hover:text-amber-400 transition-colors">Licencias</a>
             <a href="https://historycombat.cl" target="_blank" rel="noreferrer" className="text-amber-400 hover:underline">historycombat.cl</a>
           </div>
 
@@ -46,6 +50,9 @@ export const Footer: React.FC = () => {
           <p className="italic">
             «Parodia de ficción. Los personajes son caricaturas de figuras históricas y públicas; ninguno ha participado ni respaldado este juego.»
           </p>
+          <p>
+            Para mayores de 14 años. Violencia estilizada de fantasía. <a href="#legal" className="text-amber-400 underline">Ver avisos legales, privacidad y licencias</a>.
+          </p>
         </div>
 
         {/* Bottom copyright */}
@@ -54,7 +61,7 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} History Combat · Desarrollado con Godot Engine 4
           </div>
           <div>
-            Acceso anticipado v0.1 · historycombat.cl
+            historycombat.cl
           </div>
         </div>
       </div>

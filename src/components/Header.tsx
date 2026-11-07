@@ -8,7 +8,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onPlayClick }) => {
   return (
     <header className="sticky top-0 z-50 bg-[#0e141d]/95 backdrop-blur-md border-b border-[#1c2836]">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-8 px-4 sm:px-6 py-3.5">
+      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-x-8 gap-y-2 px-4 sm:px-6 py-3">
         {/* Zone 1: Wordmark */}
         <a 
           href="#inicio" 
@@ -18,38 +18,24 @@ export const Header: React.FC<HeaderProps> = ({ onPlayClick }) => {
           <span>HISTORY COMBAT</span>
         </a>
 
-        {/* Zone 2: Navigation Links (Campaign first) */}
-        <nav className="hidden md:flex items-center gap-7 text-xs sm:text-sm font-medium text-neutral-300">
-          <a 
-            href="#el-nexo" 
-            className="hover:text-amber-400 hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
-          >
-            El Nexo
-          </a>
-          <a 
-            href="#epocas" 
-            className="hover:text-amber-400 hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
-          >
-            Épocas
-          </a>
-          <a 
-            href="#plantel" 
-            className="hover:text-amber-400 hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
-          >
-            Plantel
-          </a>
-          <a 
-            href="#combate" 
-            className="hover:text-amber-400 hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
-          >
-            Combate
-          </a>
-          <a 
-            href="#descargar" 
-            className="hover:text-amber-400 hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
-          >
-            Jugar
-          </a>
+        {/* Zone 2: Navigation (scrolls horizontally on phones) */}
+        <nav className="order-3 w-full md:order-none md:w-auto flex items-center gap-5 md:gap-7 overflow-x-auto text-xs sm:text-sm font-medium text-neutral-300 pb-0.5">
+          {[
+            ['#historia', 'Historia'],
+            ['#plantel', 'Plantel'],
+            ['#como-jugar', 'Cómo jugar'],
+            ['#modos', 'Modos'],
+            ['#descargar', 'Jugar'],
+            ['#faq', 'Preguntas'],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="hover:text-amber-400 hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
+            >
+              {label}
+            </a>
+          ))}
         </nav>
 
         {/* Zone 3: Primary Action CTA */}

@@ -33,7 +33,7 @@ export const DownloadAndPlay: React.FC = () => {
                 historycombat.cl
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Sin descargas ni esperas. Carga directa a través de WebAssembly en Godot 4. Pensado para Chrome, Firefox y Edge en ordenador con teclado.
+                Sin descargas ni esperas. Carga directa en el navegador, sin esperas.
               </p>
             </div>
 
@@ -61,7 +61,7 @@ export const DownloadAndPlay: React.FC = () => {
                 Descarga para PC
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
-                Versión ejecutable portable para Windows 10 y 11. Ejecutable único, sin instalación.
+                Ejecutable portable de un solo archivo, sin instalación.
               </p>
             </div>
 
@@ -78,10 +78,15 @@ export const DownloadAndPlay: React.FC = () => {
         </div>
 
         {/* Requirements snippet */}
-        <div className="p-4 rounded-lg bg-[#0c121a] border border-[#1c2836] text-[11px] text-neutral-400 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono">
-          <span>Requisitos: ordenador con teclado y navegador con WebGL 2.0 / PC con Windows 64-bit. No hay controles táctiles: no apto para móviles.</span>
-          <span className="text-neutral-400 font-semibold">Motor Godot 4</span>
+        <div className="p-4 rounded-lg bg-[#0c121a] border border-[#1c2836] text-[11px] text-neutral-400 font-mono space-y-1">
+          <div className="text-amber-400 font-bold uppercase tracking-wider">Requisitos</div>
+          <div>Ordenador con teclado o mando. Navegador de escritorio (Chrome, Firefox o Edge) con WebGL 2.0, o Windows 10/11 de 64 bits.</div>
+          <div>No apto para móviles (sin controles táctiles). Mac y Linux: usa la versión web.</div>
         </div>
+        <p className="mt-3 text-center text-[11px] text-neutral-500">
+          Al jugar o crear una cuenta aceptas los <a href="#legal-terminos" className="text-amber-400 underline">Términos</a> y la{' '}
+          <a href="#legal-privacidad" className="text-amber-400 underline">Política de privacidad</a>. Obra de ficción/parodia, para mayores de 14 años.
+        </p>
 
         {/* Modal */}
         {downloadModalOpen && (
@@ -112,17 +117,19 @@ export const DownloadAndPlay: React.FC = () => {
 
               <div className="pt-2 flex flex-col gap-2">
                 <a
-                  href="https://historycombat.cl"
-                  target="_blank"
-                  rel="noreferrer"
+                  href="https://github.com/estaban2905/History-Combat/releases/latest/download/HistoryCombat.exe"
+                  download
                   onClick={() => {
                     playArcadeSound('punch');
                     setDownloadModalOpen(false);
                   }}
                   className="py-3 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs text-center rounded transition-all cursor-pointer"
                 >
-                  Descargar desde historycombat.cl
+                  Descargar HistoryCombat.exe
                 </a>
+                <p className="text-[10px] text-neutral-500 leading-relaxed">
+                  Si Windows muestra un aviso, pulsa «Más información» y luego «Ejecutar de todas formas».
+                </p>
                 <button
                   onClick={() => setDownloadModalOpen(false)}
                   className="text-xs text-neutral-400 hover:text-neutral-200 py-1 cursor-pointer"

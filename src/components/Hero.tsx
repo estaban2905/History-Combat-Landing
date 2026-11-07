@@ -36,20 +36,20 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
               <div className="relative aspect-video bg-black flex items-center justify-center overflow-hidden">
                 {activeMediaTab === 'video' ? (
                   <video
-                    key="promo-video"
-                    src="/assets/media/promo.mp4"
+                    key="trailer-video"
+                    src="/assets/media/trailer.mp4"
                     controls
                     playsInline
                     preload="metadata"
                     className="w-full h-full object-contain"
                   >
-                    <source src="/assets/media/promo.mp4" type="video/mp4" />
+                    <source src="/assets/media/trailer.mp4" type="video/mp4" />
                     Tu navegador no soporta la reproducción de video.
                   </video>
                 ) : (
                   <img
                     src="/assets/media/captura-ingame.png"
-                    alt="Combate in-game en Godot 4: Einstein contra Kim en la Plaza de Pyongyang"
+                    alt="Combate in-game en Godot 4: Albert Einstein contra Adolf Hitler"
                     className="w-full h-full object-cover"
                   />
                 )}
@@ -69,7 +69,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
                         : 'bg-[#15202c] text-neutral-400 border border-[#223345] hover:text-neutral-200'
                     }`}
                   >
-                    <span>▶ Ver Tráiler Oficial</span>
+                    <span>▶ Ver Tráiler</span>
                   </button>
 
                   <button
@@ -83,12 +83,12 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
                         : 'bg-[#15202c] text-neutral-400 border border-[#223345] hover:text-neutral-200'
                     }`}
                   >
-                    <span>Captura In-Game (Pyongyang)</span>
+                    <span>Captura In-Game (Einstein vs Hitler)</span>
                   </button>
                 </div>
 
                 <span className="text-[11px] font-mono text-neutral-500 hidden sm:inline">
-                  Metraje real del juego
+                  Cinemática real del juego
                 </span>
               </div>
             </div>
@@ -108,11 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
 
             {/* Natural game pitch */}
             <p className="text-neutral-300 text-sm leading-relaxed">
-              Ginebra, 2031: una colisión del CERN despierta al <strong>Nexo</strong>, una IA que quiere ser el origen de todo. Obliga a cuatro genios a construir el Reloj del Origen y por la grieta del tiempo caen los ejércitos de todas las épocas a invadir la Tierra. Eres la resistencia: detén a cada villano, libera a los creadores del Reloj y derrota al Nexo para decidir si el tiempo se repara, se reescribe o se libera.
-            </p>
-
-            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
-              Desarrollado en <strong>Godot 4</strong>, con físicas de lucha arcade clásica, bloqueos precisos, agarres y animaciones cinemáticas propias por cada personaje histórico.
+              Una IA llamada <strong>el Nexo</strong> abre una grieta en el tiempo y los ejércitos de todas las épocas invaden la Tierra. Eres la resistencia: pelea con figuras históricas, combos, bloqueos perfectos y ultimates, solo, a dos o en línea.
             </p>
 
             {/* Steam-style buy / play module */}
@@ -147,10 +143,6 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
                 </button>
               </div>
 
-              <div className="flex items-center justify-between pt-1 text-[11px] font-mono text-neutral-400 border-t border-[#1c2836]">
-                <span>Sin instalación para web</span>
-                <span>Windows 64-bit portable</span>
-              </div>
             </div>
 
             {/* Specs row */}
@@ -165,7 +157,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
               </div>
               <div className="bg-[#0e1620] border border-[#1c2836] p-2 rounded">
                 <div className="text-neutral-200 font-bold">Online</div>
-                <div className="text-[10px] text-neutral-500">Duelo 1v1 · Solo teclado</div>
+                <div className="text-[10px] text-neutral-500">Duelo 1v1 · Ranking</div>
               </div>
             </div>
           </div>

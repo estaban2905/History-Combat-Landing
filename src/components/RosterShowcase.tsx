@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
-import { FIGHTERS, Fighter } from '../data/fighters';
+import { FIGHTERS } from '../data/fighters';
+import { ROSTER, RosterEntry, RosterRole } from '../data/roster';
 import { playArcadeSound } from '../utils/audio';
 
+const ROLE_STYLE: Record<RosterRole, { label: string; color: string; blurb: string }> = {
+  hero: { label: 'Resistencia', color: 'text-emerald-400', blurb: 'Luchador de la resistencia: disponible desde el inicio del Modo Historia para detener la invasión.' },
+  villain: { label: 'Villano', color: 'text-rose-400', blurb: 'Villano del Modo Historia: aprovecha la grieta del Nexo para volver a su día de la derrota o ganar más poder. Se desbloquea venciéndolo.' },
+  boss: { label: 'Jefe de frente', color: 'text-amber-400', blurb: 'Jefe de uno de los cuatro frentes de la invasión. Hay que vencer a todos los villanos del frente para abrirlo.' },
+  creator: { label: 'Creador del Reloj', color: 'text-sky-400', blurb: 'Uno de los cuatro genios que el Nexo obligó a construir el Reloj del Origen. Poseído al final de cada frente; al vencerlo queda libre.' },
+  nexo: { label: 'Jefe final', color: 'text-fuchsia-400', blurb: 'La IA nacida de la colisión del CERN. Te espera en su Torre del Reloj, con tres fases.' }
+};
+
 export const RosterShowcase: React.FC = () => {
-  const [selectedFighter, setSelectedFighter] = useState<Fighter>(FIGHTERS[0]);
+  const [selectedId, setSelectedId] = useState<string>('albert_einstein');
+  const selectedEntry: RosterEntry = ROSTER.find((r) => r.id === selectedId) ?? ROSTER[0];
+  const detail = FIGHTERS.find((f) => f.id === selectedId);
+  const selectedFighter = detail;
 
   return (
     <section id="plantel" className="py-14 md:py-20 bg-[#0e141d] border-b border-[#1c2836]">
@@ -21,48 +33,80 @@ export const RosterShowcase: React.FC = () => {
           </p>
         </div>
 
-        {/* Arcade Character Select Grid */}
+        {/* Infinite carousel with every fighter */}
         <div className="bg-[#121a24] border border-[#233549] p-4 rounded-lg shadow-xl mb-6">
           <div className="flex items-center justify-between font-mono text-xs text-neutral-400 mb-3 pb-2 border-b border-[#1c2836]">
-            <span className="text-neutral-300">Selecciona un luchador:</span>
-            <span className="text-amber-400 font-bold">Luchadores destacados</span>
+            <span className="text-neutral-300">Toca un luchador para ver su ficha</span>
+            <span className="text-amber-400 font-bold">{ROSTER.length} luchadores</span>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-2.5">
-            {FIGHTERS.slice(0, 12).map((fighter) => {
-              const isSelected = selectedFighter.id === fighter.id;
-              return (
-                <button
-                  key={fighter.id}
-                  onClick={() => {
-                    playArcadeSound('punch');
-                    setSelectedFighter(fighter);
-                  }}
-                  className={`p-2 rounded-lg border transition-all flex flex-col items-center justify-between cursor-pointer ${
-                    isSelected
-                      ? 'bg-[#1e2d3e] border-amber-400 shadow-md ring-2 ring-amber-400/50 scale-[1.02]'
-                      : 'bg-[#0f1722] border-[#1e2d3e] hover:border-neutral-500 hover:bg-[#15202d]'
-                  }`}
-                >
-                  <div className="h-20 sm:h-24 w-full flex items-center justify-center p-1">
-                    <img
-                      src={fighter.spriteUrl}
-                      alt={fighter.name}
-                      className="max-h-full w-auto object-contain"
-                    />
-                  </div>
-                  <div className="w-full text-center mt-1 border-t border-[#1c2836] pt-1">
-                    <div className="font-display font-bold text-xs text-neutral-200 truncate">
-                      {fighter.name}
+          <div className="hc-marquee overflow-hidden">
+            <div className="hc-marquee-track flex w-max gap-3">
+              {[...ROSTER, ...ROSTER].map((fighter, idx) => {
+                const isSelected = selectedId === fighter.id;
+                return (
+                  <button
+                    key={`${fighter.id}-${idx}`}
+                    onClick={() => {
+                      playArcadeSound('coin');
+                      setSelectedId(fighter.id);
+                    }}
+                    aria-hidden={idx >= ROSTER.length}
+                    tabIndex={idx >= ROSTER.length ? -1 : 0}
+                    className={`shrink-0 w-28 sm:w-32 p-2 rounded-lg border transition-all flex flex-col items-center cursor-pointer ${
+                      isSelected
+                        ? 'bg-[#1e2d3e] border-amber-400 ring-2 ring-amber-400/50'
+                        : 'bg-[#0f1722] border-[#1e2d3e] hover:border-neutral-500 hover:bg-[#15202d]'
+                    }`}
+                  >
+                    <div className="h-36 sm:h-40 w-full flex items-end justify-center">
+                      <img
+                        src={`/assets/roster/${fighter.id}.png`}
+                        alt={fighter.name}
+                        loading="lazy"
+                        draggable={false}
+                        className="max-h-full w-auto object-contain"
+                        style={{ imageRendering: 'pixelated' }}
+                      />
                     </div>
-                  </div>
-                </button>
-              );
-            })}
+                    <div className="w-full text-center mt-1 border-t border-[#1c2836] pt-1">
+                      <div className="font-display font-bold text-[11px] text-neutral-200 truncate">{fighter.name}</div>
+                      <div className={`font-mono text-[9px] uppercase tracking-wider ${ROLE_STYLE[fighter.role].color}`}>
+                        {ROLE_STYLE[fighter.role].label}
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         </div>
 
+        {!selectedFighter && (
+          <div className="bg-[#121a24] border border-[#233549] p-6 sm:p-8 rounded-lg shadow-xl">
+            <div className="flex flex-col sm:flex-row items-center gap-6">
+              <div className="w-40 h-60 flex items-end justify-center bg-[#0c121a] border border-[#1e2d3e] rounded-lg p-3">
+                <img
+                  src={`/assets/roster/${selectedEntry.id}.png`}
+                  alt={selectedEntry.name}
+                  className="max-h-full w-auto object-contain"
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </div>
+              <div className="space-y-2 text-center sm:text-left">
+                <div className={`font-mono text-[11px] uppercase tracking-wider font-bold ${ROLE_STYLE[selectedEntry.role].color}`}>
+                  {ROLE_STYLE[selectedEntry.role].label}
+                </div>
+                <h3 className="font-display font-black text-2xl sm:text-3xl text-neutral-100">{selectedEntry.name}</h3>
+                <div className="text-xs font-mono text-amber-400">{selectedEntry.origin}</div>
+                <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed max-w-xl">{ROLE_STYLE[selectedEntry.role].blurb}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Selected Fighter Details View */}
+        {selectedFighter && (
         <div className="bg-[#121a24] border border-[#233549] p-6 sm:p-8 rounded-lg shadow-xl">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             {/* Fighter Sprite + Stage info */}
@@ -159,6 +203,7 @@ export const RosterShowcase: React.FC = () => {
             </div>
           </div>
         </div>
+        )}
       </div>
     </section>
   );
