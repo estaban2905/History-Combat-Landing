@@ -1,7 +1,7 @@
 // Cliente de solo lectura de la API pública del servidor de partidas.
 // La dirección se puede cambiar al compilar con VITE_API_URL.
 export const API_URL: string =
-  (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ??
+  (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ||
   'https://server-production-f7f1.up.railway.app';
 
 export interface RankingRow {
