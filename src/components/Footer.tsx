@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { playArcadeSound } from '../utils/audio';
 
 export const Footer: React.FC = () => {
@@ -22,16 +23,16 @@ export const Footer: React.FC = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-5 text-xs">
-            <a href="#historia" className="hover:text-amber-400 transition-colors">Historia</a>
-            <a href="#plantel" className="hover:text-amber-400 transition-colors">Plantel</a>
-            <a href="#como-jugar" className="hover:text-amber-400 transition-colors">Cómo jugar</a>
-            <a href="#modos" className="hover:text-amber-400 transition-colors">Modos</a>
-            <a href="#descargar" className="hover:text-amber-400 transition-colors">Jugar</a>
-            <a href="#faq" className="hover:text-amber-400 transition-colors">Preguntas</a>
-            <a href="#legal-terminos" className="hover:text-amber-400 transition-colors">Términos</a>
-            <a href="#legal-privacidad" className="hover:text-amber-400 transition-colors">Privacidad</a>
-            <a href="#legal-licencias" className="hover:text-amber-400 transition-colors">Licencias</a>
-            <a href="https://historycombat.cl" target="_blank" rel="noreferrer" className="text-amber-400 hover:underline">historycombat.cl</a>
+            <Link to="/historia" className="hover:text-amber-400 transition-colors">Historia</Link>
+            <Link to="/plantel" className="hover:text-amber-400 transition-colors">Plantel</Link>
+            <Link to="/como-jugar" className="hover:text-amber-400 transition-colors">Cómo jugar</Link>
+            <Link to="/modos" className="hover:text-amber-400 transition-colors">Modos</Link>
+            <Link to="/ranking" className="hover:text-amber-400 transition-colors">Ranking</Link>
+            <Link to="/descargar" className="hover:text-amber-400 transition-colors">Descargar</Link>
+            <Link to="/faq" className="hover:text-amber-400 transition-colors">Preguntas</Link>
+            <Link to="/legal#legal-terminos" className="hover:text-amber-400 transition-colors">Términos</Link>
+            <Link to="/legal#legal-privacidad" className="hover:text-amber-400 transition-colors">Privacidad</Link>
+            <Link to="/legal#legal-licencias" className="hover:text-amber-400 transition-colors">Licencias</Link>
           </div>
 
           <button
@@ -51,7 +52,7 @@ export const Footer: React.FC = () => {
             «Parodia de ficción. Los personajes son caricaturas de figuras históricas y públicas; ninguno ha participado ni respaldado este juego.»
           </p>
           <p>
-            Para mayores de 14 años. Violencia estilizada de fantasía. <a href="#legal" className="text-amber-400 underline">Ver avisos legales, privacidad y licencias</a>.
+            Para mayores de 14 años. Violencia estilizada de fantasía. <Link to="/legal" className="text-amber-400 underline">Ver avisos legales, privacidad y licencias</Link>.
           </p>
         </div>
 

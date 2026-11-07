@@ -4,71 +4,55 @@
  */
 
 import React from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { NexoLore } from './components/NexoLore';
-import { StoryAndEras } from './components/StoryAndEras';
-import { RosterShowcase } from './components/RosterShowcase';
-import { FightsVideo } from './components/FightsVideo';
-import { HowToPlay } from './components/HowToPlay';
-import { GameModes } from './components/GameModes';
-import { Faq } from './components/Faq';
-import { DownloadAndPlay } from './components/DownloadAndPlay';
-import { LegalSection } from './components/LegalSection';
-import { Footer } from './components/Footer';
+import { Route, Routes } from 'react-router-dom';
+import { SiteLayout } from './layouts/SiteLayout';
+import { HomePage } from './pages/HomePage';
+import {
+  DownloadPage,
+  FaqPage,
+  HowToPlayPage,
+  LegalPage,
+  ModesPage,
+  NotFoundPage,
+  RankingPage,
+  RosterPage,
+  StoryPage,
+} from './pages/ContentPages';
+import { PlayerPage } from './pages/PlayerPage';
+import { LoginPage } from './pages/LoginPage';
+import { AccountLayout } from './pages/account/AccountLayout';
+import { Overview } from './pages/account/Overview';
+import { Matches } from './pages/account/Matches';
+import { Achievements } from './pages/account/Achievements';
+import { Story } from './pages/account/Story';
+import { Seasons } from './pages/account/Seasons';
+import { Settings } from './pages/account/Settings';
 
 export default function App() {
-  const scrollToDownload = () => {
-    const el = document.getElementById('descargar');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.open('https://historycombat.cl', '_blank');
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-[#0b0f15] text-neutral-100 flex flex-col font-sans selection:bg-amber-400 selection:text-black">
-      {/* 1. Header con estilo Steam y navegación limpia */}
-      <Header onPlayClick={scrollToDownload} />
-
-      <main className="flex-1">
-        {/* 2. Hero: Showcase estilo Steam con reproductor de video / captura real in-game */}
-        <Hero
-          onPlayClick={scrollToDownload}
-          onDownloadClick={scrollToDownload}
-        />
-
-        {/* 3. Historia: la premisa, los 4 frentes con su jefe y su creador */}
-        <StoryAndEras />
-
-        {/* 4. El Nexo y los 3 finales */}
-        <NexoLore />
-
-        {/* 5. Plantel: carrusel infinito y fichas */}
-        <RosterShowcase />
-
-        {/* 6. Video de peleas reales */}
-        <FightsVideo />
-
-        {/* 7. Cómo jugar: teclado, mando y técnicas */}
-        <HowToPlay />
-
-        {/* 8. Modos de juego: historia, versus local y online */}
-        <GameModes />
-
-        {/* 9. Jugar en historycombat.cl, descarga PC y requisitos */}
-        <DownloadAndPlay />
-
-        {/* 10. Preguntas frecuentes */}
-        <Faq />
-
-        {/* 8. Avisos legales: ficción, términos, privacidad, borrado de cuenta, licencias */}
-        <LegalSection />
-      </main>
-
-      {/* 8. Footer sobrio con aviso legal de parodia */}
-      <Footer />
-    </div>
+    <Routes>
+      <Route element={<SiteLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="historia" element={<StoryPage />} />
+        <Route path="plantel" element={<RosterPage />} />
+        <Route path="como-jugar" element={<HowToPlayPage />} />
+        <Route path="modos" element={<ModesPage />} />
+        <Route path="ranking" element={<RankingPage />} />
+        <Route path="jugador/:username" element={<PlayerPage />} />
+        <Route path="descargar" element={<DownloadPage />} />
+        <Route path="faq" element={<FaqPage />} />
+        <Route path="legal" element={<LegalPage />} />
+        <Route path="entrar" element={<LoginPage />} />
+        <Route path="cuenta" element={<AccountLayout />}>
+          <Route index element={<Overview />} />
+          <Route path="partidas" element={<Matches />} />
+          <Route path="logros" element={<Achievements />} />
+          <Route path="historia" element={<Story />} />
+          <Route path="temporadas" element={<Seasons />} />
+          <Route path="ajustes" element={<Settings />} />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+    </Routes>
   );
 }

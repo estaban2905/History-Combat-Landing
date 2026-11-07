@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 // ⚠️ Confirma estos datos antes de publicar (se usan en todos los textos de abajo).
 const CONTACT_EMAIL = 'contacto@historycombat.cl';
@@ -234,19 +235,15 @@ const BLOCKS: Block[] = [
 ];
 
 export const LegalSection: React.FC = () => {
-  // Los enlaces #legal-xxx abren el bloque correspondiente (están dentro de <details>).
+  // Los enlaces /legal#legal-xxx abren el bloque correspondiente (están dentro de <details>).
+  const { hash } = useLocation();
   React.useEffect(() => {
-    const openFromHash = () => {
-      const el = document.getElementById(window.location.hash.slice(1));
-      if (el instanceof HTMLDetailsElement) {
-        el.open = true;
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    };
-    openFromHash();
-    window.addEventListener('hashchange', openFromHash);
-    return () => window.removeEventListener('hashchange', openFromHash);
-  }, []);
+    const el = hash ? document.getElementById(hash.slice(1)) : null;
+    if (el instanceof HTMLDetailsElement) {
+      el.open = true;
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [hash]);
 
   return (
   <section id="legal" className="py-14 md:py-20 bg-[#0b0f15] border-b border-[#1c2836]">

@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { DOWNLOAD_URL, GAME_URL } from '../config';
 import { playArcadeSound } from '../utils/audio';
 
 export const DownloadAndPlay: React.FC = () => {
@@ -30,7 +32,7 @@ export const DownloadAndPlay: React.FC = () => {
                 </span>
               </div>
               <h3 className="font-display font-bold text-xl text-neutral-100 mb-1">
-                historycombat.cl
+                Jugar en el navegador
               </h3>
               <p className="text-xs text-neutral-300 leading-relaxed">
                 Sin descargas ni esperas. Carga directa en el navegador, sin esperas.
@@ -38,13 +40,13 @@ export const DownloadAndPlay: React.FC = () => {
             </div>
 
             <a
-              href="https://historycombat.cl"
+              href={GAME_URL}
               target="_blank"
               rel="noreferrer"
               onClick={() => playArcadeSound('punch')}
               className="w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs sm:text-sm rounded text-center block transition-all active:scale-[0.99] shadow-md cursor-pointer"
             >
-              Abrir en historycombat.cl →
+              Jugar ahora en el navegador →
             </a>
           </div>
 
@@ -84,8 +86,8 @@ export const DownloadAndPlay: React.FC = () => {
           <div>No apto para móviles (sin controles táctiles). Mac y Linux: usa la versión web.</div>
         </div>
         <p className="mt-3 text-center text-[11px] text-neutral-500">
-          Al jugar o crear una cuenta aceptas los <a href="#legal-terminos" className="text-amber-400 underline">Términos</a> y la{' '}
-          <a href="#legal-privacidad" className="text-amber-400 underline">Política de privacidad</a>. Obra de ficción/parodia, para mayores de 14 años.
+          Al jugar o crear una cuenta aceptas los <Link to="/legal#legal-terminos" className="text-amber-400 underline">Términos</Link> y la{' '}
+          <Link to="/legal#legal-privacidad" className="text-amber-400 underline">Política de privacidad</Link>. Obra de ficción/parodia, para mayores de 14 años.
         </p>
 
         {/* Modal */}
@@ -117,7 +119,7 @@ export const DownloadAndPlay: React.FC = () => {
 
               <div className="pt-2 flex flex-col gap-2">
                 <a
-                  href="https://github.com/estaban2905/History-Combat/releases/latest/download/HistoryCombat.exe"
+                  href={DOWNLOAD_URL}
                   download
                   onClick={() => {
                     playArcadeSound('punch');

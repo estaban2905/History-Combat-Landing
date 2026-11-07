@@ -1,54 +1,76 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
+import { GAME_URL } from '../config';
 import { playArcadeSound } from '../utils/audio';
+import { Portrait } from './ui';
 
-interface HeaderProps {
-  onPlayClick: () => void;
-}
+const NAV: [string, string][] = [
+  ['/historia', 'Historia'],
+  ['/plantel', 'Plantel'],
+  ['/como-jugar', 'Cómo jugar'],
+  ['/modos', 'Modos'],
+  ['/ranking', 'Ranking'],
+  ['/descargar', 'Descargar'],
+  ['/faq', 'Preguntas'],
+];
 
-export const Header: React.FC<HeaderProps> = ({ onPlayClick }) => {
+export const Header: React.FC = () => {
+  const { player, loading } = useAuth();
+
   return (
     <header className="sticky top-0 z-50 bg-[#0e141d]/95 backdrop-blur-md border-b border-[#1c2836]">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-x-8 gap-y-2 px-4 sm:px-6 py-3">
-        {/* Zone 1: Wordmark */}
-        <a 
-          href="#inicio" 
+        <Link
+          to="/"
           onClick={() => playArcadeSound('coin')}
-          className="font-display font-black text-base sm:text-lg tracking-tight text-amber-400 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0 flex items-center gap-2"
+          className="font-display font-black text-base sm:text-lg tracking-tight text-amber-400 hover:text-amber-300 transition-colors whitespace-nowrap shrink-0"
         >
-          <span>HISTORY COMBAT</span>
-        </a>
+          HISTORY COMBAT
+        </Link>
 
-        {/* Zone 2: Navigation (scrolls horizontally on phones) */}
-        <nav className="order-3 w-full md:order-none md:w-auto flex items-center gap-5 md:gap-7 overflow-x-auto text-xs sm:text-sm font-medium text-neutral-300 pb-0.5">
-          {[
-            ['#historia', 'Historia'],
-            ['#plantel', 'Plantel'],
-            ['#como-jugar', 'Cómo jugar'],
-            ['#modos', 'Modos'],
-            ['#descargar', 'Jugar'],
-            ['#faq', 'Preguntas'],
-          ].map(([href, label]) => (
-            <a
-              key={href}
-              href={href}
-              className="hover:text-amber-400 hover:underline underline-offset-8 transition-colors whitespace-nowrap shrink-0"
+        {/* Navegación (en móvil se desliza horizontalmente) */}
+        <nav className="order-3 w-full md:order-none md:w-auto flex items-center gap-5 md:gap-6 overflow-x-auto text-xs sm:text-sm font-medium pb-0.5">
+          {NAV.map(([to, label]) => (
+            <NavLink
+              key={to}
+              to={to}
+              className={({ isActive }) =>
+                `whitespace-nowrap shrink-0 transition-colors underline-offset-8 hover:underline hover:text-amber-400 ${
+                  isActive ? 'text-amber-400 underline' : 'text-neutral-300'
+                }`
+              }
             >
               {label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 
-        {/* Zone 3: Primary Action CTA */}
         <div className="flex items-center gap-3 shrink-0">
+          {player ? (
+            <Link
+              to="/cuenta"
+              className="flex items-center gap-2 py-1 pl-1 pr-3 rounded border border-[#2a3f5a] bg-[#101722] hover:bg-[#1a2636] text-xs text-neutral-200"
+            >
+              <Portrait id={player.avatar} size={24} />
+              <span className="max-w-[7rem] truncate font-semibold">{player.username}</span>
+            </Link>
+          ) : (
+            !loading && (
+              <Link
+                to="/entrar"
+                className="py-2 px-3 rounded border border-[#2a3f5a] bg-[#101722] hover:bg-[#1a2636] text-xs font-display font-semibold text-neutral-200"
+              >
+                Entrar
+              </Link>
+            )
+          )}
           <a
-            href="https://historycombat.cl"
+            href={GAME_URL}
             target="_blank"
             rel="noreferrer"
-            onClick={() => {
-              playArcadeSound('punch');
-              onPlayClick();
-            }}
-            className="py-2 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs rounded transition-all active:scale-[0.98] shadow-sm whitespace-nowrap shrink-0 cursor-pointer"
+            onClick={() => playArcadeSound('punch')}
+            className="py-2 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs rounded transition-all active:scale-[0.98] shadow-sm whitespace-nowrap"
           >
             Jugar gratis
           </a>

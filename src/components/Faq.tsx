@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const FAQ: { q: string; a: React.ReactNode }[] = [
   { q: '¿Es gratis?', a: 'Sí. Se juega gratis en el navegador y la versión de Windows también se descarga sin costo.' },
@@ -15,7 +16,7 @@ const FAQ: { q: string; a: React.ReactNode }[] = [
     a: (
       <>
         Escribe a <a className="text-amber-400 underline" href="mailto:contacto@historycombat.cl">contacto@historycombat.cl</a>. Los detalles están en la{' '}
-        <a href="#legal-privacidad" className="text-amber-400 underline">política de privacidad</a>.
+        <Link to="/legal#legal-privacidad" className="text-amber-400 underline">política de privacidad</Link>.
       </>
     ),
   },

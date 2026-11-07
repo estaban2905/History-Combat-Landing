@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { GAME_URL } from '../config';
 import { playArcadeSound } from '../utils/audio';
 
-interface HeroProps {
-  onPlayClick: () => void;
-  onDownloadClick: () => void;
-}
 
-export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
+export const Hero: React.FC = () => {
   const [activeMediaTab, setActiveMediaTab] = useState<'video' | 'screenshot'>('video');
 
   return (
@@ -23,7 +21,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
           </div>
           <div className="flex items-center gap-2 text-neutral-400">
             <span>Servidores: </span>
-            <span className="text-emerald-400 font-bold">En línea (historycombat.cl)</span>
+            <span className="text-emerald-400 font-bold">En línea</span>
           </div>
         </div>
 
@@ -120,27 +118,22 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
 
               <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
                 <a
-                  href="https://historycombat.cl"
+                  href={GAME_URL}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => {
-                    playArcadeSound('punch');
-                    onPlayClick();
-                  }}
+                  onClick={() => playArcadeSound('punch')}
                   className="flex-1 py-3 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs sm:text-sm text-center rounded transition-all active:scale-[0.99] shadow-md cursor-pointer"
                 >
                   Jugar Gratis en Navegador
                 </a>
 
-                <button
-                  onClick={() => {
-                    playArcadeSound('coin');
-                    onDownloadClick();
-                  }}
-                  className="py-3 px-4 bg-[#1a2636] hover:bg-[#233549] text-neutral-200 border border-[#2e445d] font-display font-semibold text-xs sm:text-sm rounded transition-all cursor-pointer whitespace-nowrap"
+                <Link
+                  to="/descargar"
+                  onClick={() => playArcadeSound('coin')}
+                  className="py-3 px-4 bg-[#1a2636] hover:bg-[#233549] text-neutral-200 border border-[#2e445d] font-display font-semibold text-xs sm:text-sm rounded transition-all cursor-pointer whitespace-nowrap text-center"
                 >
                   Descargar para PC (.exe)
-                </button>
+                </Link>
               </div>
 
             </div>
