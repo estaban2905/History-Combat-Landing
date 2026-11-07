@@ -38,7 +38,7 @@ export default function App() {
         {/* 3. Campaña Primero: El Nexo, los 4 científicos creadores y los 3 finales */}
         <NexoLore />
 
-        {/* 4. Las 5 Épocas Temporales en orden inverso hacia la grieta */}
+        {/* 4. Las 4 épocas en orden inverso hacia la grieta */}
         <StoryAndEras />
 
         {/* 5. Pantalla de Selección Arcade: 12 luchadores interactivos y datos reales */}

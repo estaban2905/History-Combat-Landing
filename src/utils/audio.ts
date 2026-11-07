@@ -108,17 +108,21 @@ export const playArcadeSound = (type: 'punch' | 'kick' | 'special' | 'ultimate' 
       }
 
       case 'coin': {
-        const osc1 = ctx.createOscillator();
-        const gain1 = ctx.createGain();
-        osc1.type = 'square';
-        osc1.frequency.setValueAtTime(987.77, now); // B5
-        osc1.frequency.setValueAtTime(1318.51, now + 0.08); // E6
-        gain1.gain.setValueAtTime(0.2, now);
-        gain1.gain.linearRampToValueAtTime(0.01, now + 0.35);
-        osc1.connect(gain1);
-        gain1.connect(ctx.destination);
-        osc1.start(now);
-        osc1.stop(now + 0.35);
+        // Soft click: low sine notes with a smooth attack and gentle decay.
+        [523.25, 783.99].forEach((freq, idx) => {
+          const t = now + idx * 0.06; // C5, G5
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, t);
+          gain.gain.setValueAtTime(0.0001, t);
+          gain.gain.exponentialRampToValueAtTime(0.06, t + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + 0.24);
+        });
         break;
       }
 

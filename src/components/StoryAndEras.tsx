@@ -11,13 +11,13 @@ export const StoryAndEras: React.FC = () => {
         {/* Section Header */}
         <div className="max-w-3xl mb-10">
           <div className="font-mono text-xs text-amber-400 mb-1 font-bold uppercase tracking-wider">
-            Línea Temporal Inversa
+            Los Cuatro Frentes de la Invasión
           </div>
           <h2 className="font-display font-black text-2xl sm:text-3xl lg:text-4xl text-neutral-100">
-            El Viaje Hacia Atrás en el Tiempo
+            La Tierra Invadida
           </h2>
           <p className="text-neutral-300 text-sm sm:text-base mt-3 leading-relaxed">
-            Para alcanzar la grieta del Nexo, el jugador debe emprender un viaje hacia atrás en el tiempo, desde el presente hasta la antigüedad, derrotando al jefe que custodia el fragmento de cada época.
+            Los ejércitos de cuatro épocas marchan sobre ciudades modernas en ruinas. En un globo terráqueo eliges a qué villano detener; debes vencer a todos los de un frente para abrir a su jefe y, tras él, al creador del Reloj poseído. Los que ya murieron quieren volver a su día de la derrota; los que siguen vivos aprovechan el caos para tener más poder. Al final te espera el Juicio del Nexo.
           </p>
         </div>
 
@@ -39,7 +39,7 @@ export const StoryAndEras: React.FC = () => {
                 }`}
               >
                 <div className="font-mono text-[10px] text-amber-400 mb-1">
-                  Época 0{era.order}
+                  Frente 0{era.order}
                 </div>
                 <div className="font-display font-bold text-xs sm:text-sm truncate text-neutral-100">
                   {era.name}
@@ -58,7 +58,7 @@ export const StoryAndEras: React.FC = () => {
             {/* Era Details */}
             <div className="md:col-span-8 space-y-4">
               <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-neutral-400">
-                <span className="text-amber-400 font-bold">Época {activeEra.order} de 5</span>
+                <span className="text-amber-400 font-bold">Frente {activeEra.order} de 4</span>
                 <span>·</span>
                 <span>{activeEra.period}</span>
               </div>
@@ -71,14 +71,17 @@ export const StoryAndEras: React.FC = () => {
                 {activeEra.description}
               </p>
 
+              <p className="text-xs text-amber-300/90 italic">{activeEra.nexoLine}</p>
+
               <div className="pt-4 border-t border-[#1c2836] grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
                 <div>
                   <span className="text-neutral-500 block">Jefe de la Era:</span>
                   <span className="text-amber-300 font-bold text-base">{activeEra.bossName}</span>
                   <span className="text-neutral-400 block text-[11px] mt-0.5">{activeEra.bossRole}</span>
+                  <span className="text-neutral-300 block text-[11px] mt-1">{activeEra.bossWish}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-500 block">Escenario Oficial:</span>
+                  <span className="text-neutral-500 block">Escenario:</span>
                   <span className="text-neutral-200 font-semibold text-sm">{activeEra.stageName}</span>
                 </div>
               </div>
@@ -87,16 +90,16 @@ export const StoryAndEras: React.FC = () => {
             {/* Boss Challenge Box */}
             <div className="md:col-span-4 bg-[#0e1620] border border-[#1e2d3e] p-6 rounded-lg text-center space-y-3">
               <div className="font-mono text-[10px] text-amber-400 font-bold uppercase tracking-wider">
-                Custodio del Fragmento
+                Jefe de la Época
               </div>
               <div className="font-display font-black text-xl text-neutral-100">
                 {activeEra.bossName}
               </div>
               <p className="text-xs text-neutral-400 leading-relaxed">
-                Vence al jefe de esta época para reclamar su fragmento temporal y desbloquear nuevos luchadores en tu cuenta.
+                Cada jefe aprovecha la grieta del Nexo. Tienes 3 revanchas por frente para detenerlo.
               </p>
               <div className="pt-2 text-[11px] font-mono text-neutral-300 italic border-t border-[#1c2836]">
-                {activeEra.clues}
+                Creador poseído: {activeEra.creatorName}. {activeEra.creatorPossession}
               </div>
             </div>
           </div>

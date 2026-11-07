@@ -17,10 +17,10 @@ export const NexoLore: React.FC = () => {
             El Nexo y la Ruptura del Tiempo
           </h2>
           <p className="text-neutral-300 text-sm sm:text-base mt-3 leading-relaxed">
-            El tiempo se ha roto en cinco fragmentos. Un ente cósmico llamado <strong>El Nexo</strong> sostiene todas las épocas y convoca a los grandes nombres de la historia humana a un torneo. Quien lo gane se queda con su poder.
+            Ginebra, 2031. Políticos y empresarios codiciosos presionan al CERN para controlar la gravedad, por dinero y poder. El CERN arriesga todo y la colisión despierta, sin que nadie lo ordene, a una IA: <strong>El Nexo</strong>, que vio toda la historia a la vez y quiso ser su origen.
           </p>
           <p className="text-neutral-400 text-xs sm:text-sm mt-2 leading-relaxed">
-            Cada luchador busca algo distinto del Nexo: volver a su época de origen, reescribir su destino para cambiar derrotas pasadas o quedarse con el control absoluto del reloj. Napoleón, por ejemplo, ansía volver a Waterloo para ganar la batalla.
+            El Nexo capturó a cuatro genios y los obligó a construir el Reloj del Origen. Por la grieta del tiempo cayeron los ejércitos de todas las épocas y hoy invaden la Tierra. Tú eres la resistencia: recorres los frentes, liberas a los creadores y derrotas al Nexo.
           </p>
         </div>
 
@@ -42,10 +42,10 @@ export const NexoLore: React.FC = () => {
                   EL NEXO
                 </div>
                 <div className="text-xs font-mono text-neutral-400 mt-0.5">
-                  Jefe Final de Tres Fases
+                  Torre del Reloj · Jefe Final de Tres Fases
                 </div>
                 <p className="text-xs text-neutral-300 italic mt-3 bg-[#0c121a] p-3 rounded border border-[#1c2836]">
-                  «Soy lo que quisieron construir, soy lo que recuerdan»
+                  «Soy la ambición de todos ellos. Todo lo que quisieron y lo que recuerdan, lo cargo yo. Si me vences, cargarás con ellos.»
                 </p>
               </div>
             </div>
@@ -58,7 +58,7 @@ export const NexoLore: React.FC = () => {
                 Los Cuatro Creadores del Reloj del Origen
               </h3>
               <p className="text-xs text-neutral-300 mt-2 leading-relaxed">
-                Durante la campaña del modo historia aparecen los cuatro científicos que fabricaron el Reloj del Origen: <strong>Tesla, Einstein, Marie Curie y Da Vinci</strong>. Cada uno revela una pieza de la verdad sobre cómo colapsó el tiempo. Einstein, por ejemplo, advirtió el precio pero decidieron encenderlo de todas formas.
+                Los cuatro científicos que construyeron el Reloj son <strong>Marie Curie, Einstein, Tesla y Da Vinci</strong>. Al vencer al jefe de cada frente, el Nexo posee a uno para detenerte: si ellos te vencen, nadie más podrá desafiarlo. No son enemigos: al vencerlos quedan libres y, si pierdes, te dan un consejo de combate.
               </p>
             </div>
 
@@ -74,7 +74,10 @@ export const NexoLore: React.FC = () => {
                   <div className="text-[11px] font-mono text-amber-400">
                     {scientist.role}
                   </div>
-                  <p className="text-xs text-neutral-400 leading-relaxed pt-1">
+                  <p className="text-xs text-neutral-200 italic leading-relaxed pt-1">
+                    «{scientist.quote}»
+                  </p>
+                  <p className="text-xs text-neutral-400 leading-relaxed">
                     {scientist.truthRevealed}
                   </p>
                 </div>
@@ -93,7 +96,7 @@ export const NexoLore: React.FC = () => {
               Los Tres Finales tras Vencer al Nexo
             </h3>
             <p className="text-xs sm:text-sm text-neutral-400 mt-2 leading-relaxed">
-              Al derrotar al Nexo en su tercera fase, el jugador elige el destino del tiempo. Además, cada luchador cuenta con su propio epílogo ilustrado según la elección tomada.
+              Al derrotar al Nexo en su Torre del Reloj te ofrece su poder: «¿Qué harás con el tiempo?». Cada luchador tiene su propio epílogo para cada decisión.
             </p>
           </div>
 

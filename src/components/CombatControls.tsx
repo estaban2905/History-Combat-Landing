@@ -149,7 +149,7 @@ export const CombatControls: React.FC = () => {
             <div className="p-4 rounded-lg bg-[#121a24] border border-[#233549] space-y-2 text-xs shadow-md">
               <strong className="text-neutral-100 font-display text-sm block">Modo Historia & Duelo Online</strong>
               <p className="text-neutral-300 leading-relaxed">
-                La campaña individual ofrece diálogos narrativos entre épocas y 3 revanchas por partida. En el duelo online puedes jugar partidas clasificatorias con sistema de ligas o amistosos con amigos mediante una sala privada con código.
+                La campaña tiene escenas de diálogo con voz antes de los jefes y los creadores del Reloj, y 3 revanchas por partida. En el duelo online puedes jugar partidas clasificatorias con sistema de ligas o amistosos con amigos mediante una sala privada con código.
               </p>
             </div>
 

@@ -17,7 +17,7 @@ export const RosterShowcase: React.FC = () => {
             El Plantel de Luchadores
           </h2>
           <p className="text-neutral-400 text-xs sm:text-sm mt-2 leading-relaxed">
-            Comienzas con 12 personajes iniciales en el Modo Historia y vas ganando rivales al superar cada época. En los duelos online todos los personajes están disponibles desde el inicio.
+            En el Modo Historia empiezas con 29 luchadores jugables (sabios, héroes y justos, de Sócrates a Mandela). Los 24 villanos y los 4 creadores del Reloj se desbloquean venciéndolos. En los duelos online los 57 están disponibles desde el inicio.
           </p>
         </div>
 
@@ -105,7 +105,7 @@ export const RosterShowcase: React.FC = () => {
               {/* Motivation in the tournament */}
               <div className="bg-[#0e1620] border-l-2 border-amber-400 p-3.5 rounded text-xs space-y-1">
                 <span className="font-mono text-amber-400 font-bold text-[11px] block uppercase tracking-wider">
-                  Objetivo con el Poder del Nexo
+                  Qué quiere del Nexo
                 </span>
                 <p className="text-neutral-300 leading-relaxed text-[13px]">
                   {selectedFighter.nexoGoal}

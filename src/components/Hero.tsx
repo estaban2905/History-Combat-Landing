@@ -108,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
 
             {/* Natural game pitch */}
             <p className="text-neutral-300 text-sm leading-relaxed">
-              El tiempo se ha quebrado en cinco fragmentos por culpa del Reloj del Origen. Una entidad milenaria llamada <strong>El Nexo</strong> sostiene las épocas y ha convocado a las mayores figuras de la historia humana a un torneo definitivo. Quien lo gane reclamará el poder de restaurar, reescribir o liberar el curso de los siglos.
+              Ginebra, 2031: una colisión del CERN despierta al <strong>Nexo</strong>, una IA que quiere ser el origen de todo. Obliga a cuatro genios a construir el Reloj del Origen y por la grieta del tiempo caen los ejércitos de todas las épocas a invadir la Tierra. Eres la resistencia: detén a cada villano, libera a los creadores del Reloj y derrota al Nexo para decidir si el tiempo se repara, se reescribe o se libera.
             </p>
 
             <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
@@ -156,12 +156,12 @@ export const Hero: React.FC<HeroProps> = ({ onPlayClick, onDownloadClick }) => {
             {/* Specs row */}
             <div className="grid grid-cols-3 gap-2 text-center text-xs font-mono text-neutral-400">
               <div className="bg-[#0e1620] border border-[#1c2836] p-2 rounded">
-                <div className="text-neutral-200 font-bold">50</div>
+                <div className="text-neutral-200 font-bold">57</div>
                 <div className="text-[10px] text-neutral-500">Luchadores + El Nexo</div>
               </div>
               <div className="bg-[#0e1620] border border-[#1c2836] p-2 rounded">
-                <div className="text-neutral-200 font-bold">5</div>
-                <div className="text-[10px] text-neutral-500">Épocas</div>
+                <div className="text-neutral-200 font-bold">4</div>
+                <div className="text-[10px] text-neutral-500">Frentes · 3 finales</div>
               </div>
               <div className="bg-[#0e1620] border border-[#1c2836] p-2 rounded">
                 <div className="text-neutral-200 font-bold">Online</div>

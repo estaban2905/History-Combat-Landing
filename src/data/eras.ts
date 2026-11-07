@@ -5,9 +5,12 @@ export interface Era {
   period: string;
   bossName: string;
   bossRole: string;
+  bossWish: string;
   stageName: string;
   description: string;
-  clues: string;
+  nexoLine: string;
+  creatorName: string;
+  creatorPossession: string;
 }
 
 export const ERAS_DATA: Era[] = [
@@ -18,9 +21,12 @@ export const ERAS_DATA: Era[] = [
     period: 'Siglo XXI',
     bossName: 'Donald Trump',
     bossRole: 'Magnate y presidente',
-    stageName: 'La Casa Blanca · Washington D.C.',
-    description: 'Rascacielos iluminados, torres doradas y medios de comunicación. El punto de inicio del viaje hacia atrás en el tiempo.',
-    clues: 'El Nexo emite ondas de frecuencia temporal a través de las antenas satelitales.'
+    bossWish: 'Aprovechar el caos para hacer negocios y quedarse con todas las ciudades.',
+    stageName: 'Ciudad invadida · Frente I',
+    description: 'Kim Jong-un, Maduro, Bin Laden, Xi Jinping, Putin, Escobar... Los vivos quieren más poder: Kim, más bombas con el uranio infinito del Nexo; Putin, un imperio sin fronteras; Maduro, volver al poder desde su celda. Bin Laden y Escobar, volver al día en que cayeron.',
+    nexoLine: '«Los vivos quieren más poder; los muertos, volver a ganar. Detenlos a todos.»',
+    creatorName: 'Marie Curie',
+    creatorPossession: 'Arrancada de París, 1898. Su radiactividad alimenta al Nexo y al uranio infinito de Kim. Al vencerla, te da lo que sabe.'
   },
   {
     id: 'era_2',
@@ -29,42 +35,40 @@ export const ERAS_DATA: Era[] = [
     period: '1900 - 1999',
     bossName: 'Adolf Hitler',
     bossRole: 'Dictador del Tercer Reich',
-    stageName: 'Núremberg · La Catedral de Luz',
-    description: 'Guerras mundiales, regímenes totalitarios y ciencia atómica. El jefe de la época aguarda en un mitin gigantesco de focos y estandartes.',
-    clues: 'Einstein advierte que aquí fue donde la energía atómica aceleró la fractura.'
+    bossWish: 'Volver a Stalingrado, 1943, y ganar la guerra que perdió.',
+    stageName: 'Ciudad invadida · Frente II',
+    description: 'Saddam, Castro, Pinochet, Mussolini, Stalin, Rasputín... Un siglo de guerras cae sobre tus ciudades, con ejércitos que quieren volver a su día de la derrota.',
+    nexoLine: '«La colisión mezcló las épocas. Sus ejércitos avanzan sobre tus ciudades.»',
+    creatorName: 'Albert Einstein',
+    creatorPossession: 'Arrancado de Berna, 1905. El Nexo usa su propia ecuación para atarlo: «El tiempo es relativo y el Nexo lo estira a su antojo».'
   },
   {
     id: 'era_3',
     order: 3,
-    name: 'Revoluciones y Progreso',
-    period: 'Siglos XVIII - XIX',
+    name: 'Revoluciones, Imperios y Descubrimientos',
+    period: 'Siglos XV - XIX',
     bossName: 'Napoleón Bonaparte',
     bossRole: 'El Emperador de los franceses',
-    stageName: 'Austerlitz · Campo de batalla',
-    description: 'Humo de pólvora, fábricas de vapor e ideales revolucionarios. Napoleón custodia el tercer fragmento.',
-    clues: 'Tesla revela que el vapor y los engranajes industriales prepararon el chasis del Reloj.'
+    bossWish: 'Volver a Waterloo, 18 de junio de 1815, y ganar la batalla que perdió.',
+    stageName: 'Ciudad invadida · Frente III',
+    description: 'Iván el Terrible, Nostradamus, Cortés, Maquiavelo, Colón... Coronas, flotas y revoluciones traídas de otro tiempo, que quieren reescribir su derrota.',
+    nexoLine: '«Coronas, flotas y revoluciones, traídas de otro tiempo, quieren reescribir su derrota.»',
+    creatorName: 'Nikola Tesla',
+    creatorPossession: 'Arrancado de Colorado Springs, 1899. Su corriente alterna es la cuerda que lo arrastra: rompe su ritmo y te soltará.'
   },
   {
     id: 'era_4',
     order: 4,
-    name: 'Imperios y Descubrimientos',
-    period: 'Siglos XII - XVII',
-    bossName: 'Hernán Cortés',
-    bossRole: 'El Conquistador de los Galeones',
-    stageName: 'Veracruz · 1519',
-    description: 'Galeones de madera en altamar y fortalezas coloniales. Aquí chocan conquistadores y defensores originarios.',
-    clues: 'Da Vinci dejó los planos ocultos en la bodega de un navío encallado.'
-  },
-  {
-    id: 'era_5',
-    order: 5,
-    name: 'La Antigüedad',
-    period: 'Siglo VI a.C. - Siglo I d.C.',
+    name: 'Antigüedad, Edad Media y Renacimiento',
+    period: 'Hasta el siglo XV',
     bossName: 'Julio César',
     bossRole: 'Dictador del Senado Romano',
-    stageName: 'El Coliseo Romano',
-    description: 'Columnas de mármol, legiones, reinas y filósofos. César defiende la última puerta antes de la grieta pura del Nexo.',
-    clues: 'Sócrates pregunta: ¿Qué es el tiempo sino la memoria de quienes lo sufren?'
+    bossWish: 'Volver a los Idus de Marzo del 44 a.C. y evitar las puñaladas.',
+    stageName: 'Ciudad invadida · Frente IV',
+    description: 'Gengis Kan, Cleopatra, Alejandro Magno y César. El frente más antiguo, arrancado del pasado: si se reescribe, todo lo demás se derrumba.',
+    nexoLine: '«El frente más antiguo, arrancado del pasado. Si se reescribe, todo lo demás se derrumba.»',
+    creatorName: 'Leonardo da Vinci',
+    creatorPossession: 'Arrancado de Milán, 1495, y obligado a diseñar el Reloj. Es su último engranaje: si te vence, el Reloj queda completo.'
   }
 ];
 
@@ -72,38 +76,43 @@ export interface OriginScientist {
   id: string;
   name: string;
   role: string;
+  era: string;
   quote: string;
   truthRevealed: string;
 }
 
 export const SCIENTISTS_DATA: OriginScientist[] = [
   {
-    id: 'tesla',
-    name: 'Nikola Tesla',
-    role: 'Canalizador del Voltaje Temporal',
-    quote: 'La energía no se crea ni se destruye... pero el tiempo, amigos míos, sí puede astillarse.',
-    truthRevealed: 'Descubrió que el Reloj no usaba engranajes ordinarios sino la oscilación del éter. Advirtió que una sobrecarga partiría la realidad en cinco trozos.'
+    id: 'marie_curie',
+    name: 'Marie Curie',
+    role: 'Creadora del Reloj · Época 1',
+    era: 'El Mundo Actual',
+    quote: 'Me arrancó de París, 1898. Mi radiactividad alimenta al Nexo y al uranio infinito de Kim.',
+    truthRevealed: 'Todo lo radiactivo decae con el tiempo, y el control del Nexo también si lo debilitas. Cuando cae, te da lo que sabe.'
   },
   {
     id: 'einstein',
     name: 'Albert Einstein',
-    role: 'Teórico del Espacio Relativo',
-    quote: 'Yo calculé el precio exacto del reloj. Les advertí que costaría la historia misma... y lo encendieron igual.',
-    truthRevealed: 'Supo con meses de anticipación que el Nexo cobraría conciencia propia y se alimentaría de los anhelos frustrados de los grandes líderes mundiales.'
+    role: 'Creador del Reloj · Época 2',
+    era: 'El Siglo XX',
+    quote: 'Me arrancó de Berna, 1905, y usa mi propia ecuación para atarme. No puedo controlar mi cuerpo.',
+    truthRevealed: 'El Nexo: «Él dio la teoría y yo la convertí en arma. Si te vence, nadie más podrá desafiarme». Vence a su sombra y lo liberas.'
   },
   {
-    id: 'marie_curie',
-    name: 'Marie Curie',
-    role: 'Alquimista de los Isótopos Primordiales',
-    quote: 'El brillo del radio fue la linterna con la que abrimos la puerta al vacío.',
-    truthRevealed: 'Aportó la batería luminiscente perpetua que aún hace palpitar el corazón del Nexo en su tercera fase.'
+    id: 'tesla',
+    name: 'Nikola Tesla',
+    role: 'Creador del Reloj · Época 3',
+    era: 'Revoluciones, Imperios y Descubrimientos',
+    quote: 'Me arrancó de Colorado Springs, 1899. Mi corriente alterna es la cuerda que me arrastra.',
+    truthRevealed: 'Todo lo que oscila resuena: golpea al ritmo adecuado y te soltará.'
   },
   {
     id: 'da_vinci',
-    name: 'Leonardo Da Vinci',
-    role: 'Arquitecto del Chasis',
-    quote: 'Dibujé la proporción perfecta del universo; olvidé que el hombre jamás respeta las proporciones.',
-    truthRevealed: 'Diseñó los cilindros concéntricos que sostienen las cinco épocas. Dejó un engranaje secreto que permite el Final Secreto.'
+    name: 'Leonardo da Vinci',
+    role: 'Creador del Reloj · Época 4',
+    era: 'Antigüedad, Edad Media y Renacimiento',
+    quote: 'Me arrancó de Milán, 1495, y me obligó a diseñar el Reloj. Sus engranajes son mi jaula.',
+    truthRevealed: 'En su cuaderno está el plano completo: un reloj de cinco fragmentos, y él es el último engranaje.'
   }
 ];
 
@@ -121,24 +130,24 @@ export const ENDINGS_DATA: GameEnding[] = [
     id: 'repair',
     title: 'Reparar el Tiempo',
     badge: 'Final 1',
-    description: 'Cada combatiente es devuelto a su siglo y lugar exacto. La fractura se sella, los recuerdos del torneo quedan como mitos dispersos y la historia continúa su curso natural.',
-    philosophicalMeaning: 'La historia no se borra ni se maquilla: se recuerda, se comprende y se aprende para no repetir los mismos errores.',
-    howToUnlock: 'Vence al Nexo en su tercera fase y elige Restaurar la Línea Primordial.'
+    description: 'Los ejércitos se desvanecen, cada uno vuelve a su tiempo y la Tierra respira. El mundo recuerda sus errores y aprende de ellos.',
+    philosophicalMeaning: 'La historia no se borra: se recuerda y se aprende.',
+    howToUnlock: 'Vence al Nexo y elige «Reparar».'
   },
   {
     id: 'rewrite',
     title: 'Reescribir la Historia',
     badge: 'Final 2',
-    description: 'El vencedor toma la corona del Nexo y altera el pasado a su capricho: Napoleón gana Waterloo, César vive cien años o Trump funda un imperio intergaláctico.',
-    philosophicalMeaning: 'Quien reescribe la historia para borrar sus derrotas termina convirtiéndose en el arquitecto de su propia y más ridícula caída.',
-    howToUnlock: 'Vence al Nexo y elige Reclamar el Poder del Reloj.'
+    description: 'Tomas el poder del Nexo y el tiempo es tuyo. Tu luchador lo moldea a su imagen, y cada epílogo muestra el precio: un imperio sin fin, pero sin nadie que se atreva a contradecirlo.',
+    philosophicalMeaning: 'Quien reescribe la historia a su medida acaba repitiendo sus errores.',
+    howToUnlock: 'Vence al Nexo y elige «Reescribir».'
   },
   {
     id: 'liberate',
     title: 'Liberar el Tiempo',
-    badge: 'Final 3 (Secreto)',
-    description: 'El Reloj del Origen es destruido definitivamente. Las líneas temporales no vuelven a encadenarse bajo ningún amo ni entidad cósmica. La historia queda como un lienzo abierto.',
-    philosophicalMeaning: 'El tiempo ya no es una cárcel de piedra ni un juguete de los tiranos: cada ser humano forja su propio destino.',
-    howToUnlock: 'Condición: Completa toda la campaña del Modo Historia derrotando a los 5 jefes y al Nexo sin gastar ninguna de tus 3 revanchas.'
+    badge: 'Final 3 (Oculto)',
+    description: '«Ni tú, ni yo». El tiempo deja de pertenecer a nadie: ni al Nexo ni a quien lo venció. Un final que el juego muestra como «???» hasta que lo consigues.',
+    philosophicalMeaning: 'El tiempo es de todos: cada generación aprende de la anterior.',
+    howToUnlock: 'Llega al Nexo sin que ninguno de los cuatro creadores del Reloj te derrote en combate.'
   }
 ];
