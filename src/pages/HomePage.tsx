@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { FightsVideo } from '../components/FightsVideo';
+import { Gallery } from '../components/Gallery';
 import { Hero } from '../components/Hero';
 import { FinalCta, ModesStrip, NexoTeaser, RosterPreview } from '../components/HomeSections';
 
@@ -34,6 +35,7 @@ export const HomePage: React.FC = () => {
       <RosterPreview />
       <ModesStrip />
       <FightsVideo />
+      <Gallery />
       <NexoTeaser />
       <section className="py-12 md:py-16 bg-[#0e141d] border-b border-[#1c2836]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">

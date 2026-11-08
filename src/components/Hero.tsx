@@ -1,9 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import { DOWNLOAD_URL } from '../config';
+import { fetchHealth, type Health } from '../utils/api';
 import { playArcadeSound } from '../utils/audio';
 
+
+/** Estado real del servidor en línea (consulta /health al abrir la página). */
+const ServerStatus: React.FC = () => {
+  const [state, setState] = useState<'loading' | 'up' | 'down'>('loading');
+  const [health, setHealth] = useState<Health | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetchHealth()
+      .then((h) => {
+        if (cancelled) return;
+        setHealth(h);
+        setState(h.ok ? 'up' : 'down');
+      })
+      .catch(() => !cancelled && setState('down'));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const label =
+    state === 'loading'
+      ? 'Comprobando…'
+      : state === 'up'
+        ? health && health.rooms > 0
+          ? `En línea · ${health.rooms} ${health.rooms === 1 ? 'partida' : 'partidas'} en curso`
+          : 'En línea'
+        : 'Sin conexión';
+  const color = state === 'up' ? 'text-emerald-400' : state === 'down' ? 'text-red-400' : 'text-neutral-400';
+
+  return (
+    <p className="whitespace-nowrap" role="status">
+      Servidores: <span className={`${color} font-bold`}>{label}</span>
+    </p>
+  );
+};
 
 export const Hero: React.FC = () => {
   const [activeMediaTab, setActiveMediaTab] = useState<'video' | 'screenshot'>('video');
@@ -20,9 +57,7 @@ export const Hero: React.FC = () => {
             <span aria-hidden="true" className="hidden sm:inline text-neutral-600">·</span>
             <span className="hidden sm:inline whitespace-nowrap">Godot Engine 4</span>
           </p>
-          <p className="whitespace-nowrap">
-            Servidores: <span className="text-emerald-400 font-bold">En línea</span>
-          </p>
+          <ServerStatus />
         </div>
 
         {/* Two-Column Steam Showcase */}
@@ -35,7 +70,6 @@ export const Hero: React.FC = () => {
                 {activeMediaTab === 'video' ? (
                   <video
                     key="trailer-video"
-                    src="/assets/media/trailer.mp4"
                     poster="/assets/media/captura-ingame.png"
                     controls
                     playsInline

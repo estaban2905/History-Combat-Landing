@@ -67,6 +67,26 @@ export const fetchPlayer = (username: string) =>
 
 export const fetchSeason = () => get<Season>('/season');
 
+export interface Health {
+  ok: boolean;
+  db: boolean;
+  queued: number;
+  rooms: number;
+}
+
+/** Estado del servidor de partidas (con límite de tiempo, para que la portada no espere de más). */
+export async function fetchHealth(timeoutMs = 6000): Promise<Health> {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(`${API_URL}/health`, { headers: { Accept: 'application/json' }, signal: ctrl.signal });
+    if (!res.ok) throw new ApiError(res.status, `HTTP ${res.status}`);
+    return (await res.json()) as Health;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 // Ligas: mismos umbrales que el juego (server/src/services/season.service.ts).
 export const LEAGUES = [
   { key: 'diamond', label: 'Diamante', from: 1500, color: 'text-cyan-300 border-cyan-700 bg-cyan-950/50' },
