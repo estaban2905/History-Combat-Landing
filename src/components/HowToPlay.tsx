@@ -153,7 +153,7 @@ export const HowToPlay: React.FC = () => {
               <div className="lg:col-span-5 space-y-3 text-xs text-neutral-300 leading-relaxed">
                 <div className="p-4 rounded-lg bg-[#121a24] border border-[#233549]">
                   <strong className="block text-neutral-100 font-display text-sm mb-1">Mandos compatibles</strong>
-                  Cualquier mando que reconozca tu sistema o navegador: DualShock/DualSense, Xbox, y los genéricos tipo «USB Joystick». Cuanto más estándar sea, menos ajustes necesita.
+                  Cualquier mando que reconozca tu sistema: DualShock/DualSense, Xbox, y los genéricos tipo «USB Joystick». Cuanto más estándar sea, menos ajustes necesita.
                 </div>
                 <div className="p-4 rounded-lg bg-[#121a24] border border-[#233549]">
                   <strong className="block text-neutral-100 font-display text-sm mb-1">1 o 2 mandos</strong>
@@ -161,7 +161,7 @@ export const HowToPlay: React.FC = () => {
                 </div>
                 <div className="p-4 rounded-lg bg-[#121a24] border border-[#233549]">
                   <strong className="block text-neutral-100 font-display text-sm mb-1">Asistente de calibración</strong>
-                  Si algún botón no coincide (frecuente en mandos genéricos y en el navegador), en CONTROLES › MANDOS pulsa CALIBRAR o la tecla F10. Un dibujo del mando ilumina cada botón que debes pulsar. Se guarda por modelo, así que se hace una sola vez.
+                  Si algún botón no coincide (frecuente en mandos genéricos), en CONTROLES › MANDOS pulsa CALIBRAR o la tecla F10. Un dibujo del mando ilumina cada botón que debes pulsar. Se guarda por modelo, así que se hace una sola vez.
                 </div>
                 <div className="p-4 rounded-lg bg-[#121a24] border border-[#233549]">
                   <strong className="block text-neutral-100 font-display text-sm mb-1">Menús con mando</strong>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
-import { GAME_URL } from '../config';
 import { playArcadeSound } from '../utils/audio';
 import { Portrait } from './ui';
 
@@ -65,15 +64,13 @@ export const Header: React.FC = () => {
               </Link>
             )
           )}
-          <a
-            href={GAME_URL}
-            target="_blank"
-            rel="noreferrer"
+          <Link
+            to="/descargar"
             onClick={() => playArcadeSound('punch')}
             className="py-2 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs rounded transition-all active:scale-[0.98] shadow-sm whitespace-nowrap"
           >
-            Jugar gratis
-          </a>
+            Descargar gratis
+          </Link>
         </div>
       </div>
     </header>

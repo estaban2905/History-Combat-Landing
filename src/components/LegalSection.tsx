@@ -183,7 +183,7 @@ const BLOCKS: Block[] = [
           <li>Se borran tu cuenta, estadísticas, desbloqueos, partidas guardadas, amistades y sesiones. Los duelos que
             jugaste siguen en el historial de tu rival, pero tu nombre aparece como «Jugador eliminado».</li>
           <li>La eliminación es definitiva: no se puede recuperar el progreso.</li>
-          <li>Si juegas sin cuenta, basta con borrar los datos del sitio en tu navegador o eliminar el .exe.</li>
+          <li>Si juegas sin cuenta, basta con eliminar el .exe y la carpeta de datos del juego en tu equipo.</li>
         </UL>
       </>
     ),

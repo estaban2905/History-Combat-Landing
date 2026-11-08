@@ -2,13 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const FAQ: { q: string; a: React.ReactNode }[] = [
-  { q: '¿Es gratis?', a: 'Sí. Se juega gratis en el navegador y la versión de Windows también se descarga sin costo.' },
+  { q: '¿Es gratis?', a: 'Sí. La versión de Windows se descarga y se juega sin costo.' },
   { q: '¿Necesito una cuenta?', a: 'No para jugar. La historia y el versus local funcionan sin cuenta. La cuenta se usa para el ranking, los amigos, el perfil y para guardar la historia en la nube.' },
   { q: '¿Puedo jugar con mando?', a: 'Sí, con mandos tipo PlayStation, Xbox o genéricos. Si algún botón no coincide, usa el asistente de calibración (F10). Mira la guía en «Cómo jugar».' },
   { q: '¿Funciona en el celular?', a: 'Todavía no: no hay controles táctiles. Usa un ordenador con teclado o con mando.' },
-  { q: '¿Qué navegadores sirven?', a: 'Chrome, Firefox y Edge de escritorio, con WebGL 2.0.' },
-  { q: '¿Hay versión para Mac o Linux?', a: 'Por ahora solo hay descarga para Windows de 64 bits. En Mac y Linux, juega en el navegador.' },
-  { q: '¿Se guarda mi partida?', a: 'Sí. El Modo Historia se guarda sola, una partida por luchador, en tu navegador o equipo. Con cuenta también se guarda en la nube.' },
+  { q: '¿Hay versión para Mac o Linux?', a: 'No, por ahora solo hay versión para Windows 10/11 de 64 bits.' },
+  { q: '¿Se guarda mi partida?', a: 'Sí. El Modo Historia se guarda sola, una partida por luchador, en tu equipo. Con cuenta también se guarda en la nube.' },
   { q: '¿Cuántos luchadores hay y cómo se desbloquean?', a: 'Hay 57 luchadores más El Nexo. 29 están disponibles desde el inicio; los villanos y los cuatro creadores del Reloj se desbloquean en el Modo Historia.' },
   { q: '¿Es un juego terminado?', a: 'No: está en acceso anticipado (v0.1). El equilibrio de los luchadores y varias funciones aún se están ajustando.' },
   {

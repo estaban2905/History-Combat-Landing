@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GAME_URL } from '../config';
 import { playArcadeSound } from '../utils/audio';
 
 
@@ -117,20 +116,10 @@ export const Hero: React.FC = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-2.5 pt-1">
-                <a
-                  href={GAME_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => playArcadeSound('punch')}
-                  className="flex-1 py-3 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs sm:text-sm text-center rounded transition-all active:scale-[0.99] shadow-md cursor-pointer"
-                >
-                  Jugar Gratis en Navegador
-                </a>
-
                 <Link
                   to="/descargar"
-                  onClick={() => playArcadeSound('coin')}
-                  className="py-3 px-4 bg-[#1a2636] hover:bg-[#233549] text-neutral-200 border border-[#2e445d] font-display font-semibold text-xs sm:text-sm rounded transition-all cursor-pointer whitespace-nowrap text-center"
+                  onClick={() => playArcadeSound('punch')}
+                  className="flex-1 py-3 px-4 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs sm:text-sm text-center rounded transition-all active:scale-[0.99] shadow-md cursor-pointer"
                 >
                   Descargar para PC (.exe)
                 </Link>

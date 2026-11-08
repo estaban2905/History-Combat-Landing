@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { DOWNLOAD_URL, GAME_URL } from '../config';
+import { DOWNLOAD_URL } from '../config';
 import { playArcadeSound } from '../utils/audio';
 
 export const DownloadAndPlay: React.FC = () => {
@@ -11,45 +11,17 @@ export const DownloadAndPlay: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-10">
           <div className="font-mono text-xs text-amber-400 mb-1 font-bold uppercase tracking-wider">
-            Acceso Inmediato
+            Descarga gratuita
           </div>
           <h2 className="font-display font-black text-2xl sm:text-3xl text-neutral-100">
-            Juega Gratis en Navegador o en PC
+            Juega gratis en tu PC con Windows
           </h2>
           <p className="text-neutral-400 text-xs sm:text-sm mt-2">
-            Disponible para jugar al instante en la web oficial o mediante paquete portable para Windows.
+            Un solo archivo portable, sin instalación. El juego se actualiza solo al abrirlo.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-          {/* Web card */}
-          <div className="p-6 rounded-lg border border-[#2e445d] bg-[#121a24] flex flex-col justify-between shadow-xl space-y-4">
-            <div>
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-mono text-[10px] text-amber-400 uppercase tracking-wider">Navegador Web</span>
-                <span className="font-mono text-[10px] text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800">
-                  En línea
-                </span>
-              </div>
-              <h3 className="font-display font-bold text-xl text-neutral-100 mb-1">
-                Jugar en el navegador
-              </h3>
-              <p className="text-xs text-neutral-300 leading-relaxed">
-                Sin descargas ni esperas. Carga directa en el navegador, sin esperas.
-              </p>
-            </div>
-
-            <a
-              href={GAME_URL}
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => playArcadeSound('punch')}
-              className="w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs sm:text-sm rounded text-center block transition-all active:scale-[0.99] shadow-md cursor-pointer"
-            >
-              Jugar ahora en el navegador →
-            </a>
-          </div>
-
+        <div className="grid grid-cols-1 gap-6 mb-8 max-w-md mx-auto">
           {/* PC Desktop card */}
           <div className="p-6 rounded-lg border border-[#1e2d3e] bg-[#101722] flex flex-col justify-between shadow-xl space-y-4">
             <div>
@@ -72,7 +44,7 @@ export const DownloadAndPlay: React.FC = () => {
                 playArcadeSound('coin');
                 setDownloadModalOpen(true);
               }}
-              className="w-full py-3.5 bg-[#1a2636] hover:bg-[#233549] text-neutral-200 border border-[#2a3f5a] font-display font-semibold text-xs sm:text-sm rounded text-center block transition-all cursor-pointer"
+              className="w-full py-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-display font-bold text-xs sm:text-sm rounded text-center block transition-all active:scale-[0.99] shadow-md cursor-pointer"
             >
               Descargar .exe (~115 MB)
             </button>
@@ -82,8 +54,8 @@ export const DownloadAndPlay: React.FC = () => {
         {/* Requirements snippet */}
         <div className="p-4 rounded-lg bg-[#0c121a] border border-[#1c2836] text-[11px] text-neutral-400 font-mono space-y-1">
           <div className="text-amber-400 font-bold uppercase tracking-wider">Requisitos</div>
-          <div>Ordenador con teclado o mando. Navegador de escritorio (Chrome, Firefox o Edge) con WebGL 2.0, o Windows 10/11 de 64 bits.</div>
-          <div>No apto para móviles (sin controles táctiles). Mac y Linux: usa la versión web.</div>
+          <div>Windows 10/11 de 64 bits, con teclado o mando.</div>
+          <div>No apto para móviles (sin controles táctiles). Por ahora no hay versión para Mac ni Linux.</div>
         </div>
         <p className="mt-3 text-center text-[11px] text-neutral-500">
           Al jugar o crear una cuenta aceptas los <Link to="/legal#legal-terminos" className="text-amber-400 underline">Términos</Link> y la{' '}
