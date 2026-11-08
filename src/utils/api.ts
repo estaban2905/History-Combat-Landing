@@ -45,7 +45,7 @@ export interface Season {
 }
 
 export class ApiError extends Error {
-  constructor(public status: number, message: string) {
+  constructor(public status: number, message: string, public code: string = '') {
     super(message);
   }
 }

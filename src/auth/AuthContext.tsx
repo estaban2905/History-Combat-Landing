@@ -9,6 +9,7 @@ interface AuthValue {
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (email: string, password: string, username: string) => Promise<void>;
+  loginWithGoogle: (idToken: string, username?: string, acceptTerms?: boolean) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -39,12 +40,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setPlayer(await session.register(email, password, username));
   }, []);
 
+  const loginWithGoogle = useCallback(async (idToken: string, username?: string, acceptTerms?: boolean) => {
+    setPlayer(await session.loginWithGoogle(idToken, username, acceptTerms));
+  }, []);
+
   const logout = useCallback(async () => {
     setPlayer(null);
     await session.logout();
   }, []);
 
-  const value = useMemo(() => ({ player, loading, login, register, logout }), [player, loading, login, register, logout]);
+  const value = useMemo(
+    () => ({ player, loading, login, register, loginWithGoogle, logout }),
+    [player, loading, login, register, loginWithGoogle, logout],
+  );
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 

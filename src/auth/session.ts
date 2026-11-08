@@ -55,13 +55,15 @@ export const hasSession = () => load() !== null;
 /** Mensaje de error de la API ({error, message}) o uno genérico. */
 async function toError(res: Response): Promise<ApiError> {
   let message = `Error ${res.status}`;
+  let code = '';
   try {
-    const body = (await res.json()) as { message?: string };
+    const body = (await res.json()) as { message?: string; error?: string };
     if (body.message) message = body.message;
+    if (body.error) code = body.error;
   } catch {
     /* sin cuerpo */
   }
-  return new ApiError(res.status, message);
+  return new ApiError(res.status, message, code);
 }
 
 async function post<T>(path: string, body: unknown): Promise<T> {
@@ -85,6 +87,17 @@ export async function login(email: string, password: string): Promise<Profile> {
 
 export async function register(email: string, password: string, username: string): Promise<Profile> {
   return adopt(await post<SessionResponse>('/auth/register', { email, password, username, accept_terms: true }));
+}
+
+/**
+ * Entrar con el ID token que entrega Google. Si la cuenta es nueva el servidor responde 409 `username_required`
+ * (ApiError.code): hay que volver a llamar con `username` y `acceptTerms`.
+ */
+export async function loginWithGoogle(idToken: string, username?: string, acceptTerms?: boolean): Promise<Profile> {
+  const body: Record<string, unknown> = { id_token: idToken };
+  if (username !== undefined) body.username = username;
+  if (acceptTerms !== undefined) body.accept_terms = acceptTerms;
+  return adopt(await post<SessionResponse>('/auth/google', body));
 }
 
 export async function logout(): Promise<void> {

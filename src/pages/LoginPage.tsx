@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
+import { googleEnabled, renderGoogleButton } from '../auth/google';
 import { ApiError } from '../utils/api';
 import { Card, PageHeader } from '../components/ui';
 
@@ -9,7 +10,7 @@ const field =
 
 /** Entrar o crear cuenta: /entrar. Es la misma cuenta que usa el juego. */
 export const LoginPage: React.FC = () => {
-  const { player, login, register } = useAuth();
+  const { player, login, register, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = (location.state as { from?: string } | null)?.from ?? '/cuenta';
@@ -21,6 +22,43 @@ export const LoginPage: React.FC = () => {
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  // Google: si la cuenta es nueva, el servidor pide un nombre; el token se guarda mientras se elige.
+  const [googleToken, setGoogleToken] = useState<string | null>(null);
+  const [googleUnavailable, setGoogleUnavailable] = useState(false);
+  const googleBox = useRef<HTMLDivElement>(null);
+
+  const explain = (err: unknown) =>
+    err instanceof ApiError && err.status === 429
+      ? 'Demasiados intentos. Espera un momento.'
+      : err instanceof ApiError
+        ? err.message
+        : 'No se pudo conectar con el servidor.';
+
+  const finishGoogle = async (idToken: string, name?: string, terms?: boolean) => {
+    setError('');
+    setBusy(true);
+    try {
+      await loginWithGoogle(idToken, name, terms);
+      navigate(from, { replace: true });
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 409 && err.code === 'username_required') {
+        setGoogleToken(idToken);
+        setMode('register');
+      } else {
+        setError(explain(err));
+      }
+    } finally {
+      setBusy(false);
+    }
+  };
+  // El callback de Google debe ver siempre la versión actual de la función.
+  const onGoogle = useRef(finishGoogle);
+  onGoogle.current = finishGoogle;
+
+  useEffect(() => {
+    if (!googleEnabled || googleToken !== null || !googleBox.current) return;
+    renderGoogleButton(googleBox.current, (token) => void onGoogle.current(token)).catch(() => setGoogleUnavailable(true));
+  }, [googleToken]);
 
   if (player) return <Navigate to={from} replace />;
 
@@ -38,16 +76,19 @@ export const LoginPage: React.FC = () => {
       else await register(email.trim(), password, username);
       navigate(from, { replace: true });
     } catch (err) {
-      setError(
-        err instanceof ApiError && err.status === 429
-          ? 'Demasiados intentos. Espera un momento.'
-          : err instanceof ApiError
-            ? err.message
-            : 'No se pudo conectar con el servidor.',
-      );
+      setError(explain(err));
     } finally {
       setBusy(false);
     }
+  };
+
+  /** Cuenta nueva con Google: elegir nombre y aceptar los términos. */
+  const submitGoogleName = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!googleToken) return;
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(username)) return setError('El nombre debe tener de 3 a 16 letras, números o guion bajo.');
+    if (!accepted) return setError('Debes aceptar los términos y la política de privacidad.');
+    await finishGoogle(googleToken, username, true);
   };
 
   return (
@@ -78,6 +119,60 @@ export const LoginPage: React.FC = () => {
           ))}
         </div>
 
+        {googleToken ? (
+          <form onSubmit={submitGoogleName} className="space-y-3">
+            <p className="text-xs text-neutral-300">Es tu primera vez con Google: elige tu nombre de jugador para crear la cuenta.</p>
+            <label className="block text-xs text-neutral-400 space-y-1">
+              Nombre de jugador
+              <input
+                className={field}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                maxLength={16}
+                autoComplete="username"
+                placeholder="3 a 16 letras, números o _"
+                required
+              />
+            </label>
+            <label className="flex items-start gap-2 text-[11px] text-neutral-400 leading-relaxed">
+              <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} className="mt-0.5" />
+              <span>
+                Tengo 14 años o más y acepto los{' '}
+                <Link to="/legal#legal-terminos" className="text-amber-400 underline">
+                  Términos
+                </Link>{' '}
+                y la{' '}
+                <Link to="/legal#legal-privacidad" className="text-amber-400 underline">
+                  Política de privacidad
+                </Link>
+                .
+              </span>
+            </label>
+            {error && (
+              <p role="alert" className="text-xs text-red-400">
+                {error}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={busy}
+              className="w-full py-3 bg-amber-400 hover:bg-amber-300 disabled:opacity-60 text-neutral-950 font-display font-bold text-sm rounded cursor-pointer"
+            >
+              {busy ? 'Un momento…' : 'Crear cuenta'}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setGoogleToken(null);
+                setError('');
+              }}
+              className="w-full text-[11px] text-neutral-500 underline cursor-pointer"
+            >
+              Cancelar
+            </button>
+          </form>
+        ) : (
+        <>
         <form onSubmit={submit} className="space-y-3">
           {mode === 'register' && (
             <label className="block text-xs text-neutral-400 space-y-1">
@@ -149,10 +244,28 @@ export const LoginPage: React.FC = () => {
           </button>
         </form>
 
-        <p className="text-[11px] text-neutral-500">
-          Si creaste tu cuenta con Google en el juego, por ahora entra desde el juego: aquí solo funciona el acceso con correo
-          y contraseña.
-        </p>
+        {googleEnabled ? (
+          <div className="space-y-2">
+            <div className="flex items-center gap-3 text-[11px] text-neutral-500">
+              <span className="flex-1 border-t border-[#1c2836]" />
+              o
+              <span className="flex-1 border-t border-[#1c2836]" />
+            </div>
+            <div ref={googleBox} className="flex justify-center min-h-[44px]" />
+            {googleUnavailable && (
+              <p role="alert" className="text-[11px] text-red-400 text-center">
+                No se pudo cargar el acceso con Google (¿una extensión o la red lo bloquea?). Entra con tu correo.
+              </p>
+            )}
+          </div>
+        ) : (
+          <p className="text-[11px] text-neutral-500">
+            Si creaste tu cuenta con Google en el juego, por ahora entra desde el juego: aquí solo funciona el acceso con correo
+            y contraseña.
+          </p>
+        )}
+        </>
+        )}
       </Card>
     </div>
   );
