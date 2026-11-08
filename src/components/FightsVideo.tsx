@@ -20,9 +20,10 @@ export const FightsVideo: React.FC = () => {
           <div className="aspect-video bg-black">
             <video
               src="/assets/media/peleas.mp4"
+              poster="/assets/media/captura-ingame.png"
               controls
               playsInline
-              preload="metadata"
+              preload="none"
               className="w-full h-full object-contain"
             >
               Tu navegador no soporta la reproducción de video.

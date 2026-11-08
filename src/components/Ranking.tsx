@@ -13,6 +13,7 @@ export const Ranking: React.FC = () => {
   const [error, setError] = useState(false);
   const [season, setSeason] = useState<Season | null>(null);
   const [query, setQuery] = useState('');
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     fetchSeason().then(setSeason).catch(() => setSeason(null));
@@ -28,7 +29,7 @@ export const Ranking: React.FC = () => {
     return () => {
       cancelled = true;
     };
-  }, [period, fighter]);
+  }, [period, fighter, attempt]);
 
   const onSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,15 +55,15 @@ export const Ranking: React.FC = () => {
             <div className="font-mono text-[10px] text-neutral-400 uppercase tracking-wider">Termina en</div>
             <div className="font-mono text-sm text-neutral-100">{remaining(season.ends_at)}</div>
           </div>
-          <div className="w-full text-[11px] text-neutral-500 font-mono">
+          <div className="w-full text-xs text-neutral-400 font-mono leading-relaxed">
             Todos empiezan en 1000 puntos. Plata 1100 · Oro 1300 · Diamante 1500. Al cerrar la temporada los puntos se
             acercan a 1000 y los mejores ganan marcos y títulos.
           </div>
         </div>
       )}
 
-      <div className="flex flex-wrap items-center gap-3 mb-4">
-        <div className="flex rounded overflow-hidden border border-[#2a3f5a] text-xs font-display font-semibold">
+      <div className="grid grid-cols-1 sm:flex sm:flex-wrap sm:items-center gap-3 mb-4">
+        <div role="group" aria-label="Periodo" className="grid grid-cols-2 sm:flex rounded overflow-hidden border border-[#2a3f5a] text-sm font-display font-semibold">
           {([
             ['all', 'Histórico'],
             ['week', 'Últimos 7 días'],
@@ -70,7 +71,8 @@ export const Ranking: React.FC = () => {
             <button
               key={key}
               onClick={() => setPeriod(key)}
-              className={`px-3 py-2 cursor-pointer transition-colors ${
+              aria-pressed={period === key}
+              className={`min-h-11 px-4 py-2 cursor-pointer transition-colors ${
                 period === key ? 'bg-amber-400 text-neutral-950' : 'bg-[#101722] text-neutral-300 hover:bg-[#1a2636]'
               }`}
             >
@@ -83,7 +85,7 @@ export const Ranking: React.FC = () => {
           value={fighter}
           onChange={(e) => setFighter(e.target.value)}
           aria-label="Filtrar por luchador"
-          className="bg-[#101722] border border-[#2a3f5a] text-neutral-200 text-xs rounded px-3 py-2 cursor-pointer"
+          className="w-full sm:w-auto min-h-11 bg-[#101722] border border-[#2a3f5a] text-neutral-200 text-sm rounded px-3 py-2 cursor-pointer"
         >
           <option value="">Todos los luchadores</option>
           {[...ROSTER]
@@ -95,18 +97,18 @@ export const Ranking: React.FC = () => {
             ))}
         </select>
 
-        <form onSubmit={onSearch} className="flex gap-2 ml-auto">
+        <form onSubmit={onSearch} role="search" className="flex gap-2 w-full sm:w-auto sm:ml-auto">
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Buscar jugador"
             maxLength={16}
             aria-label="Buscar jugador por nombre"
-            className="bg-[#101722] border border-[#2a3f5a] text-neutral-200 text-xs rounded px-3 py-2 w-40 sm:w-48 placeholder:text-neutral-500"
+            className="flex-1 min-w-0 sm:w-48 sm:flex-none min-h-11 bg-[#101722] border border-[#2a3f5a] text-neutral-200 text-sm rounded px-3 py-2 placeholder:text-neutral-400"
           />
           <button
             type="submit"
-            className="px-3 py-2 bg-[#1a2636] hover:bg-[#233549] border border-[#2a3f5a] text-neutral-200 text-xs font-display font-semibold rounded cursor-pointer"
+            className="min-h-11 px-5 py-2 bg-amber-400 hover:bg-amber-300 text-neutral-950 text-sm font-display font-bold rounded cursor-pointer"
           >
             Ver
           </button>
@@ -115,8 +117,8 @@ export const Ranking: React.FC = () => {
 
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-xs sm:text-sm">
-            <thead className="bg-[#0c121a] text-neutral-400 font-mono text-[10px] uppercase tracking-wider">
+          <table className="w-full text-sm">
+            <thead className="bg-[#0c121a] text-neutral-400 font-mono text-[11px] uppercase tracking-wider">
               <tr>
                 <th className="text-left px-3 py-2 w-10">#</th>
                 <th className="text-left px-3 py-2">Jugador</th>
@@ -143,7 +145,7 @@ export const Ranking: React.FC = () => {
                       className="flex items-center gap-2 hover:text-amber-300"
                     >
                       <Portrait id={r.avatar} />
-                      <span className="font-semibold text-neutral-100 truncate max-w-[9rem]">{r.username}</span>
+                      <span className="font-semibold text-neutral-100 truncate max-w-[7rem] sm:max-w-[12rem]">{r.username}</span>
                     </Link>
                   </td>
                   <td className="px-3 py-2">
@@ -168,10 +170,21 @@ export const Ranking: React.FC = () => {
           </table>
         </div>
         {rows === null && !error && <Loading text="Cargando ranking…" />}
-        {error && <ErrorBox>No se pudo cargar el ranking. Inténtalo de nuevo en unos minutos.</ErrorBox>}
+        {error && (
+          <div className="py-10 px-4 text-center space-y-3">
+            <p className="text-neutral-300 text-sm">No se pudo cargar el ranking. Puede ser un corte momentáneo.</p>
+            <button
+              type="button"
+              onClick={() => setAttempt((n) => n + 1)}
+              className="min-h-11 px-5 py-2 bg-amber-400 hover:bg-amber-300 text-neutral-950 text-sm font-display font-bold rounded cursor-pointer"
+            >
+              Reintentar
+            </button>
+          </div>
+        )}
         {rows?.length === 0 && <ErrorBox>Todavía no hay duelos registrados con este filtro. ¡Sé el primero!</ErrorBox>}
       </Card>
-      <p className="mt-3 text-center text-[11px] text-neutral-500">
+      <p className="mt-3 text-center text-xs text-neutral-400">
         Solo cuentan los duelos online entre dos cuentas. Toca un jugador para ver su perfil.
       </p>
     </div>

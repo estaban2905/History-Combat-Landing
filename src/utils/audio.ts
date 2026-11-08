@@ -3,7 +3,44 @@
  * Safe to call; handles browser autoplay policies and audio context lifecycles.
  */
 
+import { useSyncExternalStore } from 'react';
+
 let audioCtx: AudioContext | null = null;
+
+/** Los sonidos arrancan silenciados; el visitante los activa con el botón del menú. Se recuerda en localStorage. */
+const STORAGE_KEY = 'hc-sound';
+const listeners = new Set<() => void>();
+
+function readMuted(): boolean {
+  try {
+    return localStorage.getItem(STORAGE_KEY) !== 'on';
+  } catch {
+    return true;
+  }
+}
+
+let muted = readMuted();
+
+export function setMuted(value: boolean) {
+  muted = value;
+  try {
+    localStorage.setItem(STORAGE_KEY, value ? 'off' : 'on');
+  } catch {
+    // sin almacenamiento: solo vale para esta visita
+  }
+  listeners.forEach((l) => l());
+}
+
+export function useMuted(): boolean {
+  return useSyncExternalStore(
+    (cb) => {
+      listeners.add(cb);
+      return () => listeners.delete(cb);
+    },
+    () => muted,
+    () => true,
+  );
+}
 
 function getAudioContext(): AudioContext | null {
   if (typeof window === 'undefined') return null;
@@ -20,6 +57,7 @@ function getAudioContext(): AudioContext | null {
 }
 
 export const playArcadeSound = (type: 'punch' | 'kick' | 'special' | 'ultimate' | 'parry' | 'coin' | 'gong' | 'victory') => {
+  if (muted) return;
   try {
     const ctx = getAudioContext();
     if (!ctx) return;

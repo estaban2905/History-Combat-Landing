@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { FightsVideo } from '../components/FightsVideo';
 import { Hero } from '../components/Hero';
+import { FinalCta, ModesStrip, NexoTeaser, RosterPreview } from '../components/HomeSections';
 
 // Enlaces antiguos de una sola página (historycombat.cl/#legal lo usa el juego): se llevan a su página nueva.
 const LEGACY: Record<string, string> = {
@@ -18,7 +19,7 @@ const LEGACY: Record<string, string> = {
 const LINKS: [string, string, string][] = [
   ['/ranking', 'Ranking online', 'Mira quién lidera la temporada y busca a cualquier jugador.'],
   ['/historia', 'La historia', 'El Nexo abrió una grieta en el tiempo. Conoce a sus cuatro frentes.'],
-  ['/plantel', 'El plantel', 'Más de 50 luchadores históricos, con su época y su rol.'],
+  ['/plantel', 'El plantel', 'Todos los luchadores históricos, con su época y su rol.'],
   ['/entrar', 'Tu cuenta', 'Entra para ver tus partidas, logros y progreso desde la web.'],
 ];
 
@@ -30,7 +31,10 @@ export const HomePage: React.FC = () => {
   return (
     <>
       <Hero />
+      <RosterPreview />
+      <ModesStrip />
       <FightsVideo />
+      <NexoTeaser />
       <section className="py-12 md:py-16 bg-[#0e141d] border-b border-[#1c2836]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {LINKS.map(([to, title, text]) => (
@@ -45,6 +49,7 @@ export const HomePage: React.FC = () => {
           ))}
         </div>
       </section>
+      <FinalCta />
     </>
   );
 };

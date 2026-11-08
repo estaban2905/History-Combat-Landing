@@ -15,8 +15,14 @@ const ScrollToTop: React.FC = () => {
 export const SiteLayout: React.FC = () => (
   <div className="min-h-screen bg-[#0b0f15] text-neutral-100 flex flex-col font-sans selection:bg-amber-400 selection:text-black">
     <ScrollToTop />
+    <a
+      href="#contenido"
+      className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded focus:bg-amber-400 focus:text-neutral-950 focus:font-bold"
+    >
+      Saltar al contenido
+    </a>
     <Header />
-    <main className="flex-1">
+    <main id="contenido" tabIndex={-1} className="flex-1 outline-none">
       <Outlet />
     </main>
     <Footer />

@@ -51,6 +51,12 @@ export const DownloadAndPlay: React.FC = () => {
           </div>
         </div>
 
+        {/* Aviso de Windows, visible antes de descargar */}
+        <div className="mb-4 p-4 rounded-lg bg-[#1a1a0e] border border-amber-400/40 text-xs text-neutral-200 leading-relaxed">
+          <strong className="block text-amber-400 font-display text-sm mb-1">Si Windows muestra un aviso azul (SmartScreen)</strong>
+          Es normal en juegos nuevos de acceso anticipado. Pulsa <strong>«Más información»</strong> y luego <strong>«Ejecutar de todas formas»</strong>.
+        </div>
+
         {/* Requirements snippet */}
         <div className="p-4 rounded-lg bg-[#0c121a] border border-[#1c2836] text-[11px] text-neutral-400 font-mono space-y-1">
           <div className="text-amber-400 font-bold uppercase tracking-wider">Requisitos</div>
@@ -64,13 +70,19 @@ export const DownloadAndPlay: React.FC = () => {
 
         {/* Modal */}
         {downloadModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-150">
-            <div className="bg-[#121a24] border border-[#2a3f5a] max-w-sm w-full rounded-lg p-5 shadow-2xl space-y-4">
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onKeyDown={(e) => e.key === 'Escape' && setDownloadModalOpen(false)}
+            onClick={(e) => e.target === e.currentTarget && setDownloadModalOpen(false)}
+          >
+            <div role="dialog" aria-modal="true" aria-label="Descarga de escritorio" className="bg-[#121a24] border border-[#2a3f5a] max-w-sm w-full rounded-lg p-5 shadow-2xl space-y-4">
               <div className="flex items-center justify-between border-b border-[#1c2836] pb-2">
                 <span className="font-mono text-xs text-amber-400 font-bold uppercase">Descarga de Escritorio</span>
                 <button
+                  autoFocus
+                  aria-label="Cerrar"
                   onClick={() => setDownloadModalOpen(false)}
-                  className="font-mono text-sm text-neutral-400 hover:text-white cursor-pointer px-1"
+                  className="font-mono text-sm text-neutral-400 hover:text-white cursor-pointer px-2 py-1"
                 >
                   ✕
                 </button>
@@ -101,7 +113,7 @@ export const DownloadAndPlay: React.FC = () => {
                 >
                   Descargar HistoryCombat.exe
                 </a>
-                <p className="text-[10px] text-neutral-500 leading-relaxed">
+                <p className="text-xs text-neutral-400 leading-relaxed">
                   Si Windows muestra un aviso, pulsa «Más información» y luego «Ejecutar de todas formas».
                 </p>
                 <button
