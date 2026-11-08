@@ -11,6 +11,7 @@ server {
     location /assets/ {
         try_files $uri =404;
         add_header Cache-Control "public, max-age=31536000, immutable";
+        include /etc/nginx/security-headers.conf;
     }
 
     # Estado para el healthcheck de Railway.
@@ -18,11 +19,13 @@ server {
         access_log off;
         default_type text/plain;
         return 200 "ok";
+        include /etc/nginx/security-headers.conf;
     }
 
     # La página siempre se revalida; cualquier ruta desconocida cae en index.html.
     location / {
         try_files $uri $uri/ /index.html;
         add_header Cache-Control "no-cache";
+        include /etc/nginx/security-headers.conf;
     }
 }

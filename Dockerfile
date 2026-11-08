@@ -15,6 +15,8 @@ RUN npm run build
 # Sitio estático: nginx lo sirve. La plantilla usa $PORT (Railway lo define solo).
 FROM nginx:1.27-alpine
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+# Cabeceras de seguridad (se incluyen desde cada location; ver nginx.conf.template).
+COPY security-headers.conf /etc/nginx/security-headers.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 ENV PORT=8080
 EXPOSE 8080
