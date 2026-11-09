@@ -4,6 +4,7 @@ import { Download, Globe2, Swords, Users } from 'lucide-react';
 import { DOWNLOAD_URL } from '../config';
 import { ROSTER } from '../data/roster';
 import { playArcadeSound } from '../utils/audio';
+import { NexoStage } from './NexoStage';
 
 const SectionHead: React.FC<{ tag: string; title: string; children?: React.ReactNode }> = ({ tag, title, children }) => (
   <div className="max-w-3xl mb-8">
@@ -105,16 +106,7 @@ export const ModesStrip: React.FC = () => (
 export const NexoTeaser: React.FC = () => (
   <section className="py-12 md:py-16 bg-[#0e141d] border-b border-[#1c2836]">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 grid md:grid-cols-12 gap-8 items-center">
-      <div className="md:col-span-4 flex justify-center rounded-lg border border-[#233549] bg-[#131c27] p-6">
-        <img
-          src="/assets/nexo_transparent.png"
-          alt="El Nexo, jefe final de History Combat"
-          width={192}
-          height={224}
-          loading="lazy"
-          className="h-44 sm:h-56 w-auto object-contain"
-        />
-      </div>
+      <NexoStage className="md:col-span-4" imgClassName="h-52 sm:h-64" />
       <div className="md:col-span-8">
         <SectionHead tag="El jefe final" title="El Nexo y los tres finales">
           Una IA nacida de la colisión del CERN vio toda la historia a la vez y quiso ser su origen. Si la derrotas, te ofrece su poder y tú decides qué harás con el tiempo.

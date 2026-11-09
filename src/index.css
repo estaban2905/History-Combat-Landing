@@ -73,3 +73,21 @@ html { scroll-behavior: smooth; }
 
 /* Nada debe ensanchar la página más que la pantalla */
 html { overflow-x: clip; }
+
+/* Escenario del Nexo: rayos, reloj y flotación */
+.hc-bolt { opacity: 0; animation: hc-flash 4s infinite; filter: drop-shadow(0 0 4px #e879f9); }
+@keyframes hc-flash {
+  0%, 8%, 100% { opacity: 0; }
+  9% { opacity: 1; }
+  11% { opacity: 0.15; }
+  13% { opacity: 0.95; }
+  18% { opacity: 0; }
+}
+.hc-nexo-clock { animation: hc-spin 90s linear infinite; }
+@keyframes hc-spin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.hc-nexo-float { animation: hc-float 4s ease-in-out infinite; }
+@keyframes hc-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce) {
+  .hc-bolt { animation: none; opacity: 0.55; }
+  .hc-nexo-clock, .hc-nexo-float { animation: none; }
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ENDINGS_DATA } from '../data/eras';
 import { playArcadeSound } from '../utils/audio';
+import { NexoStage } from './NexoStage';
 
 export const NexoLore: React.FC = () => {
   const [selectedEnding, setSelectedEnding] = useState<string>('repair');
@@ -22,13 +23,7 @@ export const NexoLore: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-4 w-full bg-[#131c27] border border-[#233549] rounded-lg p-6 shadow-xl flex flex-col items-center text-center">
-            <div className="h-56 sm:h-64 w-full flex items-center justify-center p-2">
-              <img
-                src="/assets/nexo_transparent.png"
-                alt="Sprite de El Nexo, jefe final de History Combat"
-                className="max-h-full w-auto object-contain"
-              />
-            </div>
+            <NexoStage className="w-full" imgClassName="h-52 sm:h-60" />
             <div className="w-full pt-4 mt-2 border-t border-[#1c2836]">
               <div className="font-display font-black text-xl text-amber-400">EL NEXO</div>
               <div className="text-xs font-mono text-neutral-400 mt-0.5">Torre del Reloj · Jefe final</div>
